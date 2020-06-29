@@ -1,0 +1,11 @@
+# IDEs
+.vscode
+.idea
+.vs
+
+# Compiled Files
+bin
+obj
+
+# User-specific files
+*.user
