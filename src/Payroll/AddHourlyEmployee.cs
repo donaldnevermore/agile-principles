@@ -16,7 +16,7 @@
 
         protected override PaymentSchedule MakeSchedule()
         {
-            return new MonthlySchedule();
+            return new WeeklySchedule();
         }
     }
 }

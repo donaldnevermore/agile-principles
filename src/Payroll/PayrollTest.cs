@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System;
+using NUnit.Framework;
 
 namespace AgileSoftwareDevelopment.Payroll
 {
@@ -30,22 +31,83 @@ namespace AgileSoftwareDevelopment.Payroll
         public void TestAddHourlyEmployee()
         {
             const int empId = 2;
-            var t = new AddHourlyEmployee(empId, "Kop", "Home", 0.5);
+            var t = new AddHourlyEmployee(empId, "Bill", "Home", 0.5);
             t.Execute();
 
             var e = PayrollDatabase.GetEmployee(empId);
-            Assert.AreEqual("Kop", e.Name);
+            Assert.AreEqual("Bill", e.Name);
 
             var pc = e.Classification;
             Assert.IsTrue(pc is HourlyClassification);
 
-            var hourlyClassification = pc as HourlyClassification;
-            Assert.AreEqual(0.5, hourlyClassification.HourlyRate, 0.001);
+            var hc = pc as HourlyClassification;
+            Assert.AreEqual(0.5, hc.HourlyRate, 0.001);
             var ps = e.Schedule;
-            Assert.IsTrue(ps is MonthlySchedule);
+            Assert.IsTrue(ps is WeeklySchedule);
 
             var pm = e.Method;
             Assert.IsTrue(pm is HoldMethod);
+        }
+
+        [Test]
+        public void TestAddCommissionedEmployee()
+        {
+            const int empId = 3;
+            var t = new AddCommissionedEmployee(empId, "Bill", "Home", 2500.00, 3.2);
+            t.Execute();
+
+            var e = PayrollDatabase.GetEmployee(empId);
+            Assert.AreEqual("Bill", e.Name);
+
+            var pc = e.Classification;
+            Assert.IsTrue(pc is CommissionedClassification);
+
+            var cc = pc as CommissionedClassification;
+            Assert.AreEqual(2500.00, cc.Salary, 0.001);
+            Assert.AreEqual(3.2, cc.CommissionRate, 0.001);
+            var ps = e.Schedule;
+            Assert.IsTrue(ps is BiweeklySchedule);
+
+            var pm = e.Method;
+            Assert.IsTrue(pm is HoldMethod);
+        }
+
+        [Test]
+        public void TestDeleteEmployee()
+        {
+            const int empId = 4;
+            var t = new AddCommissionedEmployee(empId, "Bill", "Home", 2500, 3.2);
+            t.Execute();
+
+            var e = PayrollDatabase.GetEmployee(empId);
+            Assert.IsNotNull(e);
+
+            var dt = new DeleteEmployeeTransaction(empId);
+            dt.Execute();
+
+            e = PayrollDatabase.GetEmployee(empId);
+            Assert.IsNull(e);
+        }
+
+        [Test]
+        public void TestTimeCardTransaction()
+        {
+            const int empId = 5;
+            var t = new AddHourlyEmployee(empId, "Bill", "Home", 15.25);
+            t.Execute();
+            var tct = new TimeCardTransaction(new DateTime(2020, 7, 31), 8.0, empId);
+            tct.Execute();
+
+            var e = PayrollDatabase.GetEmployee(empId);
+            Assert.IsNotNull(e);
+
+            var pc = e.Classification;
+            Assert.IsTrue(pc is HourlyClassification);
+            var hc = pc as HourlyClassification;
+
+            var tc = hc.GetTimeCard(new DateTime(2020, 7, 31));
+            Assert.IsNotNull(tc);
+            Assert.AreEqual(8.0, tc.Hours, 0.001);
         }
     }
 }

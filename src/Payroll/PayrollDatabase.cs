@@ -1,19 +1,30 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 
 namespace AgileSoftwareDevelopment.Payroll
 {
     public class PayrollDatabase
     {
-        private static readonly Hashtable employees = new Hashtable();
+        private static readonly Dictionary<int, object> employees = new Dictionary<int, object>();
 
         public static void AddEmployee(int id, Employee employee)
         {
-            employees[id] = employee;
+            employees.Add(id, employee);
         }
 
         public static Employee GetEmployee(int id)
         {
-            return employees[id] as Employee;
+            if (employees.ContainsKey(id))
+            {
+                return employees[id] as Employee;
+            }
+
+            return null;
+        }
+
+        public static void DeleteEmployee(int id)
+        {
+            employees.Remove(id);
         }
     }
 }
