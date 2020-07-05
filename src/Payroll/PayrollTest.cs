@@ -109,5 +109,26 @@ namespace AgileSoftwareDevelopment.Payroll
             Assert.IsNotNull(tc);
             Assert.AreEqual(8.0, tc.Hours, 0.001);
         }
+
+        [Test]
+        public void TestSalesReceiptTransaction()
+        {
+            const int empId = 6;
+            var t = new AddCommissionedEmployee(empId, "Bill", "Home", 2500.00, 3.2);
+            t.Execute();
+            var srt = new SalesReceiptTransaction(new DateTime(2020, 7, 31), 100.00, empId);
+            srt.Execute();
+
+            var e = PayrollDatabase.GetEmployee(empId);
+            Assert.IsNotNull(e);
+
+            var pc = e.Classification;
+            Assert.IsTrue(pc is CommissionedClassification);
+            var cc = pc as CommissionedClassification;
+
+            var sc = cc.GetSalesReceipt(new DateTime(2020, 7, 31));
+            Assert.IsNotNull(sc);
+            Assert.AreEqual(100.00, sc.Amount, 0.001);
+        }
     }
 }
