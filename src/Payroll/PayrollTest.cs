@@ -130,5 +130,24 @@ namespace AgileSoftwareDevelopment.Payroll
             Assert.IsNotNull(sc);
             Assert.AreEqual(100.00, sc.Amount, 0.001);
         }
+
+        [Test]
+        public void TestAddServiceCharge()
+        {
+            const int empId = 2;
+            var t = new AddHourlyEmployee(empId, "Bill", "Home", 15.25);
+            t.Execute();
+            var e = PayrollDatabase.GetEmployee(empId);
+            Assert.IsNotNull(e);
+            var af = new UnionAffiliation();
+            e.Affiliation = af;
+            const int memberId = 86;
+            PayrollDatabase.AddUnionMember(memberId, e);
+            var sct = new ServiceChargeTransaction(memberId, new DateTime(2020, 8, 8), 12.95);
+            sct.Execute();
+            var sc = af.GetServiceCharge(new DateTime(2020, 8, 8));
+            Assert.IsNotNull(sc);
+            Assert.AreEqual(12.95, sc.Amount, 0.001);
+        }
     }
 }

@@ -22,10 +22,7 @@
             var ps = MakeSchedule();
             var pm = new HoldMethod();
 
-            var e = new Employee(empId, name, address);
-            e.Classification = pc;
-            e.Schedule = ps;
-            e.Method = pm;
+            var e = new Employee(empId, name, address) {Classification = pc, Schedule = ps, Method = pm};
             PayrollDatabase.AddEmployee(empId, e);
         }
     }
