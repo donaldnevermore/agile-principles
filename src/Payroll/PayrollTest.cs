@@ -134,7 +134,7 @@ namespace AgileSoftwareDevelopment.Payroll
         [Test]
         public void TestAddServiceCharge()
         {
-            const int empId = 2;
+            const int empId = 7;
             var t = new AddHourlyEmployee(empId, "Bill", "Home", 15.25);
             t.Execute();
             var e = PayrollDatabase.GetEmployee(empId);
@@ -153,7 +153,7 @@ namespace AgileSoftwareDevelopment.Payroll
         [Test]
         public void TestChangeNameTransaction()
         {
-            const int empId = 2;
+            const int empId = 8;
             var t = new AddHourlyEmployee(empId, "Bill", "Home", 15.25);
             t.Execute();
             var cnt = new ChangeNameTransaction(empId, "Bob");
@@ -166,7 +166,7 @@ namespace AgileSoftwareDevelopment.Payroll
         [Test]
         public void TestChangeAddressTransaction()
         {
-            const int empId = 3;
+            const int empId = 9;
             var t = new AddHourlyEmployee(empId, "Bill", "Home", 15.25);
             t.Execute();
             var cnt = new ChangeAddressTransaction(empId, "Work");
