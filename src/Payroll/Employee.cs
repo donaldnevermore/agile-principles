@@ -5,7 +5,7 @@
         public PaymentClassification Classification { get; set; }
         public PaymentSchedule Schedule { get; set; }
         public HoldMethod Method { get; set; }
-        public string Name { get; }
+        public string Name { get; set; }
         public UnionAffiliation Affiliation { get; set; }
 
         private readonly int empId;
