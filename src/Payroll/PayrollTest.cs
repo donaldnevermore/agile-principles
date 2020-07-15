@@ -194,5 +194,44 @@ namespace AgileSoftwareDevelopment.Payroll
             var ps = e.Schedule;
             Assert.IsTrue(ps is WeeklySchedule);
         }
+
+        [Test]
+        public void TestChangeSalariedTransaction()
+        {
+            const int empId = 11;
+            var t = new AddHourlyEmployee(empId, "Lance", "Home", 27.52);
+            t.Execute();
+            var cht = new ChangeSalariedTransaction(empId, 2500.00);
+            cht.Execute();
+            var e = PayrollDatabase.GetEmployee(empId);
+            Assert.IsNotNull(e);
+            var pc = e.Classification;
+            Assert.IsNotNull(pc);
+            Assert.IsTrue(pc is SalariedClassification);
+            var sc = pc as SalariedClassification;
+            Assert.AreEqual(2500.00, sc.Salary, 0.001);
+            var ps = e.Schedule;
+            Assert.IsTrue(ps is MonthlySchedule);
+        }
+
+        [Test]
+        public void TestChangeCommissionedTransaction()
+        {
+            const int empId = 12;
+            var t = new AddHourlyEmployee(empId, "Lance", "Home", 27.52);
+            t.Execute();
+            var cht = new ChangeCommissionedTransaction(empId, 2500.00, 3.2);
+            cht.Execute();
+            var e = PayrollDatabase.GetEmployee(empId);
+            Assert.IsNotNull(e);
+            var pc = e.Classification;
+            Assert.IsNotNull(pc);
+            Assert.IsTrue(pc is CommissionedClassification);
+            var cc = pc as CommissionedClassification;
+            Assert.AreEqual(2500.00, cc.Salary, 0.001);
+            Assert.AreEqual(3.2, cc.CommissionRate, 0.001);
+            var ps = e.Schedule;
+            Assert.IsTrue(ps is BiweeklySchedule);
+        }
     }
 }
