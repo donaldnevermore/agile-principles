@@ -175,5 +175,24 @@ namespace AgileSoftwareDevelopment.Payroll
             Assert.IsNotNull(e);
             Assert.AreEqual("Work", e.Address);
         }
+
+        [Test]
+        public void TestChangeHourlyTransaction()
+        {
+            const int empId = 10;
+            var t = new AddCommissionedEmployee(empId, "Lance", "Home", 2500, 3.2);
+            t.Execute();
+            var cht = new ChangeHourlyTransaction(empId, 27.52);
+            cht.Execute();
+            var e = PayrollDatabase.GetEmployee(empId);
+            Assert.IsNotNull(e);
+            var pc = e.Classification;
+            Assert.IsNotNull(pc);
+            Assert.IsTrue(pc is HourlyClassification);
+            var hc = pc as HourlyClassification;
+            Assert.AreEqual(27.52, hc.HourlyRate, 0.001);
+            var ps = e.Schedule;
+            Assert.IsTrue(ps is WeeklySchedule);
+        }
     }
 }
