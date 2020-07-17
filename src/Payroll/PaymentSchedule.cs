@@ -1,7 +1,6 @@
 ﻿namespace AgileSoftwareDevelopment.Payroll
 {
-    public class PaymentSchedule
+    public abstract class PaymentSchedule
     {
-        
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace AgileSoftwareDevelopment.Payroll
 {
-    public class HoldMethod : PaymentMethod
+    public abstract class PaymentMethod
     {
     }
 }

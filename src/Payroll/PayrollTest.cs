@@ -169,8 +169,8 @@ namespace AgileSoftwareDevelopment.Payroll
             const int empId = 9;
             var t = new AddHourlyEmployee(empId, "Bill", "Home", 15.25);
             t.Execute();
-            var cnt = new ChangeAddressTransaction(empId, "Work");
-            cnt.Execute();
+            var cat = new ChangeAddressTransaction(empId, "Work");
+            cat.Execute();
             var e = PayrollDatabase.GetEmployee(empId);
             Assert.IsNotNull(e);
             Assert.AreEqual("Work", e.Address);
@@ -201,8 +201,8 @@ namespace AgileSoftwareDevelopment.Payroll
             const int empId = 11;
             var t = new AddHourlyEmployee(empId, "Lance", "Home", 27.52);
             t.Execute();
-            var cht = new ChangeSalariedTransaction(empId, 2500.00);
-            cht.Execute();
+            var cst = new ChangeSalariedTransaction(empId, 2500.00);
+            cst.Execute();
             var e = PayrollDatabase.GetEmployee(empId);
             Assert.IsNotNull(e);
             var pc = e.Classification;
@@ -220,8 +220,8 @@ namespace AgileSoftwareDevelopment.Payroll
             const int empId = 12;
             var t = new AddHourlyEmployee(empId, "Lance", "Home", 27.52);
             t.Execute();
-            var cht = new ChangeCommissionedTransaction(empId, 2500.00, 3.2);
-            cht.Execute();
+            var cct = new ChangeCommissionedTransaction(empId, 2500.00, 3.2);
+            cct.Execute();
             var e = PayrollDatabase.GetEmployee(empId);
             Assert.IsNotNull(e);
             var pc = e.Classification;
@@ -232,6 +232,58 @@ namespace AgileSoftwareDevelopment.Payroll
             Assert.AreEqual(3.2, cc.CommissionRate, 0.001);
             var ps = e.Schedule;
             Assert.IsTrue(ps is BiweeklySchedule);
+        }
+
+        [Test]
+        public void TestChangeDirectTransaction()
+        {
+            const int empId = 13;
+            var t = new AddSalariedEmployee(empId, "Bill", "Home", 2500.00);
+            t.Execute();
+            var cdt = new ChangeDirectTransaction(empId, "Bank", "Account");
+            cdt.Execute();
+            var e = PayrollDatabase.GetEmployee(empId);
+            Assert.IsNotNull(e);
+            var pm = e.Method;
+            Assert.IsNotNull(pm);
+            Assert.IsTrue(pm is DirectMethod);
+            var dm = pm as DirectMethod;
+            Assert.AreEqual("Bank", dm.Bank);
+            Assert.AreEqual("Account", dm.Account);
+        }
+
+        [Test]
+        public void TestChangeMailTransaction()
+        {
+            const int empId = 14;
+            var t = new AddSalariedEmployee(empId, "Bill", "Home", 2500.00);
+            t.Execute();
+            var cmt = new ChangeMailTransaction(empId, "Work");
+            cmt.Execute();
+            var e = PayrollDatabase.GetEmployee(empId);
+            Assert.IsNotNull(e);
+            var pm = e.Method;
+            Assert.IsNotNull(pm);
+            Assert.IsTrue(pm is MailMethod);
+            var mm = pm as MailMethod;
+            Assert.AreEqual("Work", mm.Address);
+        }
+
+        [Test]
+        public void TestChangeHoldTransaction()
+        {
+            const int empId = 15;
+            var t = new AddSalariedEmployee(empId, "Bill", "Home", 2500.00);
+            t.Execute();
+            var cmt = new ChangeMailTransaction(empId, "Work");
+            cmt.Execute();
+            var cht = new ChangeHoldTransaction(empId);
+            cht.Execute();
+            var e = PayrollDatabase.GetEmployee(empId);
+            Assert.IsNotNull(e);
+            var pm = e.Method;
+            Assert.IsNotNull(pm);
+            Assert.IsTrue(pm is HoldMethod);
         }
     }
 }
