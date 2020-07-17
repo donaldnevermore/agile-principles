@@ -7,7 +7,7 @@
         public PaymentClassification Classification { get; set; }
         public PaymentSchedule Schedule { get; set; }
         public PaymentMethod Method { get; set; }
-        public UnionAffiliation Affiliation { get; set; }
+        public Affiliation Affiliation { get; set; }
 
         private readonly int empId;
 

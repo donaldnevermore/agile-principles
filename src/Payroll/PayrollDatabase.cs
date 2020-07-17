@@ -42,5 +42,10 @@ namespace AgileSoftwareDevelopment.Payroll
 
             return null;
         }
+
+        public static void RemoveUnionMember(int memberId)
+        {
+            unionMembers.Remove(memberId);
+        }
     }
 }

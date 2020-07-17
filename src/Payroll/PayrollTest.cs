@@ -285,5 +285,26 @@ namespace AgileSoftwareDevelopment.Payroll
             Assert.IsNotNull(pm);
             Assert.IsTrue(pm is HoldMethod);
         }
+
+        [Test]
+        public void TestChangeUnionMember()
+        {
+            const int empId = 16;
+            var t = new AddHourlyEmployee(empId, "Bill", "Home", 15.25);
+            t.Execute();
+            const int memberId = 7743;
+            var cmt = new ChangeMemberTransaction(empId, memberId, 99.42);
+            cmt.Execute();
+            var e = PayrollDatabase.GetEmployee(empId);
+            Assert.IsNotNull(e);
+            var affiliation = e.Affiliation;
+            Assert.IsNotNull(affiliation);
+            Assert.IsTrue(affiliation is UnionAffiliation);
+            var uf = affiliation as UnionAffiliation;
+            Assert.AreEqual(99.42, uf.Dues, 0.001);
+            var member = PayrollDatabase.GetUnionMember(memberId);
+            Assert.IsNotNull(member);
+            Assert.AreEqual(e, member);
+        }
     }
 }
