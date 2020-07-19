@@ -306,5 +306,147 @@ namespace AgileSoftwareDevelopment.Payroll
             Assert.IsNotNull(member);
             Assert.AreEqual(e, member);
         }
+
+        [Test]
+        public void TestPaySingleSalariedEmployee()
+        {
+            const int empId = 17;
+            var t = new AddSalariedEmployee(empId, "Bob", "Home", 1000.00);
+            t.Execute();
+            var payDate = new DateTime(2020, 11, 30);
+            var pt = new PaydayTransaction(payDate);
+            pt.Execute();
+            var pc = pt.GetPaycheck(empId);
+            Assert.IsNotNull(pc);
+            Assert.AreEqual(payDate, pc.PayDate);
+            Assert.AreEqual(1000.00, pc.GrossPay, 0.001);
+            Assert.AreEqual("Hold", pc.GetField("Disposition"));
+            Assert.AreEqual(0.0, pc.Deductions, 0.001);
+            Assert.AreEqual(1000.00, pc.NetPay, 0.001);
+        }
+
+        [Test]
+        public void TestPaySingleSalariedEmployeeOnWrongDate()
+        {
+            const int empId = 18;
+            var t = new AddSalariedEmployee(empId, "Bob", "Home", 1000.00);
+            t.Execute();
+            var payDate = new DateTime(2020, 11, 29);
+            var pt = new PaydayTransaction(payDate);
+            pt.Execute();
+            var pc = pt.GetPaycheck(empId);
+            Assert.IsNull(pc);
+        }
+
+        [Test]
+        public void TestPayingSingleHourlyEmployeeNoTimeCards()
+        {
+            const int empId = 19;
+            var t = new AddHourlyEmployee(empId, "Bill", "Home", 15.25);
+            t.Execute();
+            var payDate = new DateTime(2020, 11, 6);
+            var pt = new PaydayTransaction(payDate);
+            pt.Execute();
+            ValidateHourlyPaycheck(pt, empId, payDate, 0.0);
+        }
+
+        private void ValidateHourlyPaycheck(PaydayTransaction pt, int empId, DateTime payDate, double pay)
+        {
+            var pc = pt.GetPaycheck(empId);
+            Assert.IsNotNull(pc);
+
+            Assert.AreEqual(payDate, pc.PayDate);
+            Assert.AreEqual(pay, pc.GrossPay, 0.001);
+            Assert.AreEqual("Hold", pc.GetField("Disposition"));
+            Assert.AreEqual(0.0, pc.Deductions, 0.001);
+            Assert.AreEqual(pay, pc.NetPay, 0.001);
+        }
+
+        [Test]
+        public void TestPaySingleHourlyEmployeeOneTimeCard()
+        {
+            const int empId = 20;
+            var t = new AddHourlyEmployee(empId, "Bill", "Home", 15.25);
+            t.Execute();
+
+            // Friday
+            var payDate = new DateTime(2020, 11, 6);
+            var tc = new TimeCardTransaction(payDate, 2.0, empId);
+            tc.Execute();
+            var pt = new PaydayTransaction(payDate);
+            pt.Execute();
+            ValidateHourlyPaycheck(pt, empId, payDate, 30.5);
+        }
+
+        [Test]
+        public void TestPaySingleHourlyEmployeeOvertimeOneTimeCard()
+        {
+            const int empId = 21;
+            var t = new AddHourlyEmployee(empId, "Bill", "Home", 15.25);
+            t.Execute();
+            // Friday
+            var payDate = new DateTime(2020, 11, 6);
+
+            var tc = new TimeCardTransaction(payDate, 9.0, empId);
+            tc.Execute();
+            var pt = new PaydayTransaction(payDate);
+            pt.Execute();
+            ValidateHourlyPaycheck(pt, empId, payDate, (8 + 1.5) * 15.25);
+        }
+
+        [Test]
+        public void TestPaySingleHourlyEmployeeOnWrongDate()
+        {
+            const int empId = 22;
+            var t = new AddHourlyEmployee(empId, "Bill", "Home", 15.25);
+            t.Execute();
+            // Thursday
+            var payDate = new DateTime(2020, 11, 5);
+
+            var tc = new TimeCardTransaction(payDate, 9.0, empId);
+            tc.Execute();
+            var pt = new PaydayTransaction(payDate);
+            pt.Execute();
+
+            var pc = pt.GetPaycheck(empId);
+            Assert.IsNull(pc);
+        }
+
+        [Test]
+        public void TestPaySingleHourlyEmployeeTwoTimeCards()
+        {
+            const int empId = 23;
+            var t = new AddHourlyEmployee(empId, "Bill", "Home", 15.25);
+            t.Execute();
+            // Friday
+            var payDate = new DateTime(2020, 11, 6);
+
+            var tc = new TimeCardTransaction(payDate, 2.0, empId);
+            tc.Execute();
+            var tc2 = new TimeCardTransaction(payDate.AddDays(-1), 5.0, empId);
+            tc2.Execute();
+            var pt = new PaydayTransaction(payDate);
+            pt.Execute();
+            ValidateHourlyPaycheck(pt, empId, payDate, 7 * 15.25);
+        }
+
+        [Test]
+        public void TestPaySingleHourlyEmployeeWithTimeCardsSpanningTwoPayPeriods()
+        {
+            const int empId = 24;
+            var t = new AddHourlyEmployee(empId, "Bill", "Home", 15.25);
+            t.Execute();
+            // Friday
+            var payDate = new DateTime(2020, 11, 6);
+            var dateInPreviousPayPeriod = new DateTime(2020, 10, 30);
+
+            var tc = new TimeCardTransaction(payDate, 2.0, empId);
+            tc.Execute();
+            var tc2 = new TimeCardTransaction(dateInPreviousPayPeriod, 5.0, empId);
+            tc2.Execute();
+            var pt = new PaydayTransaction(payDate);
+            pt.Execute();
+            ValidateHourlyPaycheck(pt, empId, payDate, 2 * 15.25);
+        }
     }
 }

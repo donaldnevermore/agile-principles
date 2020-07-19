@@ -10,5 +10,9 @@
             Bank = bank;
             Account = account;
         }
+
+        public override void Pay(Paycheck paycheck)
+        {
+        }
     }
 }

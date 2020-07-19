@@ -1,4 +1,6 @@
-﻿namespace AgileSoftwareDevelopment.Payroll
+﻿using System;
+
+namespace AgileSoftwareDevelopment.Payroll
 {
     public class Employee
     {
@@ -16,6 +18,22 @@
             this.empId = empId;
             Name = name;
             Address = address;
+        }
+
+        public void Payday(Paycheck paycheck)
+        {
+            var grossPay = Classification.CalculatePay(paycheck);
+            var deductions = Affiliation.CalculateDeductions(paycheck);
+            var netPay = grossPay - deductions;
+            paycheck.GrossPay = grossPay;
+            paycheck.Deductions = deductions;
+            paycheck.NetPay = netPay;
+            Method.Pay(paycheck);
+        }
+
+        public bool IsPayDate(DateTime payDate)
+        {
+            return Schedule.IsPayDate(payDate);
         }
     }
 }

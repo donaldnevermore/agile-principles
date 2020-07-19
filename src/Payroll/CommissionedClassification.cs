@@ -25,5 +25,10 @@ namespace AgileSoftwareDevelopment.Payroll
         {
             return salesReceipts[date];
         }
+
+        public override double CalculatePay(Paycheck paycheck)
+        {
+            return 0.0;
+        }
     }
 }

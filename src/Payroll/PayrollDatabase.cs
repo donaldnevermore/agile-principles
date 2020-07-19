@@ -5,8 +5,8 @@ namespace AgileSoftwareDevelopment.Payroll
 {
     public class PayrollDatabase
     {
-        private static readonly Dictionary<int, object> employees = new Dictionary<int, object>();
-        private static readonly Dictionary<int, object> unionMembers = new Dictionary<int, object>();
+        private static readonly Dictionary<int, Employee> employees = new Dictionary<int, Employee>();
+        private static readonly Dictionary<int, Employee> unionMembers = new Dictionary<int, Employee>();
 
         public static void AddEmployee(int id, Employee employee)
         {
@@ -17,10 +17,15 @@ namespace AgileSoftwareDevelopment.Payroll
         {
             if (employees.ContainsKey(id))
             {
-                return employees[id] as Employee;
+                return employees[id];
             }
 
             return null;
+        }
+
+        public static Dictionary<int, Employee>.KeyCollection GetAllEmployeeIds()
+        {
+            return employees.Keys;
         }
 
         public static void DeleteEmployee(int id)
@@ -37,7 +42,7 @@ namespace AgileSoftwareDevelopment.Payroll
         {
             if (unionMembers.ContainsKey(id))
             {
-                return unionMembers[id] as Employee;
+                return unionMembers[id];
             }
 
             return null;

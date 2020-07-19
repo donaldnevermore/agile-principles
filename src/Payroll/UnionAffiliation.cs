@@ -29,5 +29,10 @@ namespace AgileSoftwareDevelopment.Payroll
         {
             serviceCharges.Add(serviceCharge.Date, serviceCharge);
         }
+
+        public override double CalculateDeductions(Paycheck paycheck)
+        {
+            return 0.0;
+        }
     }
 }

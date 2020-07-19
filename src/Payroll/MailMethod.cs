@@ -8,5 +8,9 @@
         {
             Address = address;
         }
+
+        public override void Pay(Paycheck paycheck)
+        {
+        }
     }
 }
