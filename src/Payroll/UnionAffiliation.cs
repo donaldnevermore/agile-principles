@@ -32,7 +32,32 @@ namespace AgileSoftwareDevelopment.Payroll
 
         public override double CalculateDeductions(Paycheck paycheck)
         {
-            return 0.0;
+            var fridays = NumberOfFridaysInPayPeriod(paycheck.PayPeriodStartDate, paycheck.PayPeriodEndDate);
+            var totalDues = Dues * fridays;
+
+            foreach (var serviceCharge in serviceCharges.Values)
+            {
+                if (DateUtil.IsInPayPeriod(serviceCharge.Date, paycheck))
+                {
+                    totalDues += serviceCharge.Amount;
+                }
+            }
+
+            return totalDues;
+        }
+
+        private int NumberOfFridaysInPayPeriod(DateTime payPeriodStart, DateTime payPeriodEnd)
+        {
+            var fridays = 0;
+            for (var day = payPeriodStart; day <= payPeriodEnd; day = day.AddDays(1))
+            {
+                if (day.DayOfWeek == DayOfWeek.Friday)
+                {
+                    fridays++;
+                }
+            }
+
+            return fridays;
         }
     }
 }

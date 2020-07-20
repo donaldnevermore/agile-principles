@@ -8,5 +8,10 @@ namespace AgileSoftwareDevelopment.Payroll
         {
             return true;
         }
+
+        public override DateTime GetPayPeriodStartDate(DateTime date)
+        {
+            return date.AddDays(-14);
+        }
     }
 }

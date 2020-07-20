@@ -21,7 +21,9 @@ namespace AgileSoftwareDevelopment.Payroll
                 var employee = PayrollDatabase.GetEmployee(empId);
                 if (employee.IsPayDate(payDate))
                 {
-                    var pc = new Paycheck(payDate);
+                    var startDate = employee.GetPayPeriodStartDate(payDate);
+                    var pc = new Paycheck(startDate, payDate);
+
                     paychecks[empId] = pc;
                     employee.Payday(pc);
                 }

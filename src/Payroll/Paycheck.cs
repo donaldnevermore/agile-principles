@@ -8,9 +8,13 @@ namespace AgileSoftwareDevelopment.Payroll
         public double Deductions { get; set; }
         public double NetPay { get; set; }
         public DateTime PayDate { get; }
+        public DateTime PayPeriodStartDate { get; }
+        public DateTime PayPeriodEndDate { get; }
 
-        public Paycheck(DateTime payDate)
+        public Paycheck(DateTime startDate, DateTime payDate)
         {
+            PayPeriodStartDate = startDate;
+            PayPeriodEndDate = payDate;
             PayDate = payDate;
         }
 

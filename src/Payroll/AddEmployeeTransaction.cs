@@ -21,10 +21,9 @@
             var pc = MakeClassification();
             var ps = MakeSchedule();
             var pm = new HoldMethod();
-            var na = new NoAffiliation();
 
             var e = new Employee(empId, name, address)
-                {Classification = pc, Schedule = ps, Method = pm, Affiliation = na};
+                {Classification = pc, Schedule = ps, Method = pm};
             PayrollDatabase.AddEmployee(empId, e);
         }
     }

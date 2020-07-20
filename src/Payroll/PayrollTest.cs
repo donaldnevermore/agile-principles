@@ -448,5 +448,88 @@ namespace AgileSoftwareDevelopment.Payroll
             pt.Execute();
             ValidateHourlyPaycheck(pt, empId, payDate, 2 * 15.25);
         }
+
+        [Test]
+        public void TestSalariedUnionMemberDues()
+        {
+            const int empId = 25;
+            var t = new AddSalariedEmployee(empId, "Bob", "Home", 1000.00);
+            t.Execute();
+            const int memberId = 7734;
+            var cmt = new ChangeMemberTransaction(empId, memberId, 9.42);
+            cmt.Execute();
+            var payDate = new DateTime(2020, 7, 31);
+            var pt = new PaydayTransaction(payDate);
+            pt.Execute();
+
+            var pc = pt.GetPaycheck(empId);
+            Assert.IsNotNull(pc);
+            Assert.AreEqual(payDate, pc.PayDate);
+            Assert.AreEqual(1000.0, pc.GrossPay, 0.001);
+            Assert.AreEqual("Hold", pc.GetField("Disposition"));
+            Assert.AreEqual(5 * 9.42, pc.Deductions, 0.001);
+            Assert.AreEqual(1000.0 - 5 * 9.42, pc.NetPay, 0.001);
+        }
+
+        [Test]
+        public void TestHourlyUnionMemberServiceCharge()
+        {
+            const int empId = 26;
+            var t = new AddHourlyEmployee(empId, "Bill", "Home", 15.24);
+            t.Execute();
+            const int memberId = 7735;
+            var cmt = new ChangeMemberTransaction(empId, memberId, 9.42);
+            cmt.Execute();
+            var payDate = new DateTime(2020, 11, 6);
+            var sct = new ServiceChargeTransaction(memberId, payDate, 19.42);
+            sct.Execute();
+            var tct = new TimeCardTransaction(payDate, 8.0, empId);
+            tct.Execute();
+            var pt = new PaydayTransaction(payDate);
+            pt.Execute();
+
+            var pc = pt.GetPaycheck(empId);
+            Assert.IsNotNull(pc);
+            Assert.AreEqual(payDate, pc.PayPeriodEndDate);
+            Assert.AreEqual(8 * 15.24, pc.GrossPay, 0.001);
+            Assert.AreEqual("Hold", pc.GetField("Disposition"));
+            Assert.AreEqual(9.42 + 19.42, pc.Deductions, 0.001);
+            Assert.AreEqual(8 * 15.24 - (9.42 + 19.42), pc.NetPay, 0.001);
+        }
+
+        [Test]
+        public void TestServiceChargesSpanningMultiplePayPeriods()
+        {
+            const int empId = 27;
+            var t = new AddHourlyEmployee(empId, "Bill", "Home", 15.24);
+            t.Execute();
+
+            const int memberId = 7736;
+            var cmt = new ChangeMemberTransaction(empId, memberId, 9.42);
+            cmt.Execute();
+
+            var payDate = new DateTime(2020, 11, 6);
+            var earlyDate = new DateTime(2020, 10, 30);
+            var lateDate = new DateTime(2020, 11, 13);
+
+            var sct = new ServiceChargeTransaction(memberId, payDate, 19.42);
+            sct.Execute();
+            var sctEarly = new ServiceChargeTransaction(memberId, earlyDate, 100.00);
+            sctEarly.Execute();
+            var sctLate = new ServiceChargeTransaction(memberId, lateDate, 200.00);
+            sctLate.Execute();
+            var tct = new TimeCardTransaction(payDate, 8.0, empId);
+            tct.Execute();
+            var pt = new PaydayTransaction(payDate);
+            pt.Execute();
+
+            var pc = pt.GetPaycheck(empId);
+            Assert.IsNotNull(pc);
+            Assert.AreEqual(payDate, pc.PayPeriodEndDate);
+            Assert.AreEqual(8 * 15.24, pc.GrossPay, 0.001);
+            Assert.AreEqual("Hold", pc.GetField("Disposition"));
+            Assert.AreEqual(9.42 + 19.42, pc.Deductions, 0.001);
+            Assert.AreEqual(8 * 15.24 - (9.42 + 19.42), pc.NetPay, 0.001);
+        }
     }
 }

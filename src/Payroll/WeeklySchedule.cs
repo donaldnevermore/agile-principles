@@ -8,5 +8,10 @@ namespace AgileSoftwareDevelopment.Payroll
         {
             return payDate.DayOfWeek == DayOfWeek.Friday;
         }
+
+        public override DateTime GetPayPeriodStartDate(DateTime date)
+        {
+            return date.AddDays(-5);
+        }
     }
 }

@@ -9,6 +9,11 @@ namespace AgileSoftwareDevelopment.Payroll
             return IsLastDayOfMonth(payDate);
         }
 
+        public override DateTime GetPayPeriodStartDate(DateTime date)
+        {
+            return date.AddDays(-date.Day);
+        }
+
         private bool IsLastDayOfMonth(DateTime date)
         {
             var m1 = date.Month;

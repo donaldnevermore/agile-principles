@@ -9,7 +9,7 @@ namespace AgileSoftwareDevelopment.Payroll
         public PaymentClassification Classification { get; set; }
         public PaymentSchedule Schedule { get; set; }
         public PaymentMethod Method { get; set; }
-        public Affiliation Affiliation { get; set; }
+        public Affiliation Affiliation { get; set; } = new NoAffiliation();
 
         private readonly int empId;
 
@@ -34,6 +34,11 @@ namespace AgileSoftwareDevelopment.Payroll
         public bool IsPayDate(DateTime payDate)
         {
             return Schedule.IsPayDate(payDate);
+        }
+
+        public DateTime GetPayPeriodStartDate(DateTime date)
+        {
+            return Schedule.GetPayPeriodStartDate(date);
         }
     }
 }
