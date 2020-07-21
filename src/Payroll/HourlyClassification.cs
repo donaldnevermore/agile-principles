@@ -28,7 +28,7 @@ namespace AgileSoftwareDevelopment.Payroll
             var totalPay = 0.0;
             foreach (var timeCard in timeCards.Values)
             {
-                if (IsInPayPeriod(timeCard, paycheck.PayDate))
+                if (IsInPayPeriod(timeCard, paycheck))
                 {
                     totalPay += CalculatePayForTimeCard(timeCard);
                 }
@@ -37,12 +37,9 @@ namespace AgileSoftwareDevelopment.Payroll
             return totalPay;
         }
 
-        private bool IsInPayPeriod(TimeCard card, DateTime payPeriod)
+        private bool IsInPayPeriod(TimeCard card, Paycheck paycheck)
         {
-            var payPeriodEndDate = payPeriod;
-            // Workdays only.
-            var payPeriodStartDate = payPeriod.AddDays(-5);
-            return card.Date <= payPeriodEndDate && card.Date >= payPeriodStartDate;
+            return DateUtil.IsInPayPeriod(card.Date, paycheck);
         }
 
         private double CalculatePayForTimeCard(TimeCard card)

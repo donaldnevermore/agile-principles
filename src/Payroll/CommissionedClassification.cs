@@ -28,7 +28,44 @@ namespace AgileSoftwareDevelopment.Payroll
 
         public override double CalculatePay(Paycheck paycheck)
         {
-            return 0.0;
+            var totalPay = 0.0;
+
+            if (IsSalaryInPayPeriod(paycheck))
+            {
+                totalPay += Salary;
+            }
+
+            foreach (var salesReceipt in salesReceipts.Values)
+            {
+                if (InInPayPeriod(salesReceipt, paycheck))
+                {
+                    totalPay += salesReceipt.Amount * CommissionRate;
+                }
+            }
+
+            return totalPay;
+        }
+
+        private bool IsSalaryInPayPeriod(Paycheck paycheck)
+        {
+            var date = paycheck.PayDate;
+            if (DateUtil.IsLastDayOfMonth(date))
+            {
+                return true;
+            }
+
+            var lastDayOfPreviousMonth = date.AddDays(-date.Day);
+            if (DateUtil.IsInPayPeriod(lastDayOfPreviousMonth, paycheck))
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        private bool InInPayPeriod(SalesReceipt salesReceipt, Paycheck paycheck)
+        {
+            return DateUtil.IsInPayPeriod(salesReceipt.Date, paycheck);
         }
     }
 }

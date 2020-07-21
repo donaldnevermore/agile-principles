@@ -3,6 +3,7 @@ using NUnit.Framework;
 
 namespace AgileSoftwareDevelopment.Payroll
 {
+    [TestFixture]
     public class PayrollTest
     {
         [Test]
@@ -530,6 +531,100 @@ namespace AgileSoftwareDevelopment.Payroll
             Assert.AreEqual("Hold", pc.GetField("Disposition"));
             Assert.AreEqual(9.42 + 19.42, pc.Deductions, 0.001);
             Assert.AreEqual(8 * 15.24 - (9.42 + 19.42), pc.NetPay, 0.001);
+        }
+
+        [Test]
+        public void TestPayCommissionedEmployeeNoSalesReceipts()
+        {
+            const int empId = 28;
+            var t = new AddCommissionedEmployee(empId, "Bob", "Home", 2500.00, 3.2);
+            t.Execute();
+
+            var payDate = new DateTime(2020, 7, 17);
+            var pt = new PaydayTransaction(payDate);
+            pt.Execute();
+            var pc = pt.GetPaycheck(empId);
+            Assert.IsNotNull(pc);
+            Assert.AreEqual(payDate, pc.PayDate);
+            Assert.AreEqual(0.0, pc.GrossPay, 0.001);
+            Assert.AreEqual("Hold", pc.GetField("Disposition"));
+            Assert.AreEqual(0.0, pc.Deductions, 0.001);
+            Assert.AreEqual(0.0, pc.NetPay, 0.001);
+
+            var payDate2 = new DateTime(2020, 7, 31);
+            var pt2 = new PaydayTransaction(payDate2);
+            pt2.Execute();
+
+            var pc2 = pt2.GetPaycheck(empId);
+            Assert.IsNotNull(pc2);
+            Assert.AreEqual(payDate2, pc2.PayDate);
+            Assert.AreEqual(2500.0, pc2.GrossPay, 0.001);
+            Assert.AreEqual("Hold", pc2.GetField("Disposition"));
+            Assert.AreEqual(0.0, pc2.Deductions, 0.001);
+            Assert.AreEqual(2500.0, pc2.NetPay, 0.001);
+        }
+
+        [Test]
+        public void TestPayCommissionedEmployeeOneSalesReceipt()
+        {
+            const int empId = 29;
+            var t = new AddCommissionedEmployee(empId, "Bob", "Home", 2500.00, 3.2);
+            t.Execute();
+            var payDate = new DateTime(2020, 7, 24);
+            var srt = new SalesReceiptTransaction(payDate, 100.0, empId);
+            srt.Execute();
+            var pt = new PaydayTransaction(payDate);
+            pt.Execute();
+
+            var pc = pt.GetPaycheck(empId);
+            Assert.IsNotNull(pc);
+            Assert.AreEqual(payDate, pc.PayDate);
+            Assert.AreEqual(100.0 * 3.2, pc.GrossPay, 0.001);
+            Assert.AreEqual("Hold", pc.GetField("Disposition"));
+            Assert.AreEqual(0.0, pc.Deductions, 0.001);
+            Assert.AreEqual(100.0 * 3.2, pc.NetPay, 0.001);
+        }
+
+        [Test]
+        public void TestPayCommissionedEmployeeTwoSalesReceipts()
+        {
+            const int empId = 30;
+            var t = new AddCommissionedEmployee(empId, "Bob", "Home", 2500.00, 3.2);
+            t.Execute();
+            var payDate = new DateTime(2020, 7, 17);
+            var srt = new SalesReceiptTransaction(payDate, 100.0, empId);
+            srt.Execute();
+            var srt2 = new SalesReceiptTransaction(payDate.AddDays(-1), 200.0, empId);
+            srt2.Execute();
+            var pt = new PaydayTransaction(payDate);
+            pt.Execute();
+
+            var pc = pt.GetPaycheck(empId);
+            Assert.IsNotNull(pc);
+            Assert.AreEqual(payDate, pc.PayDate);
+            Assert.AreEqual((100.0 + 200) * 3.2, pc.GrossPay, 0.001);
+            Assert.AreEqual("Hold", pc.GetField("Disposition"));
+            Assert.AreEqual(0.0, pc.Deductions, 0.001);
+            Assert.AreEqual((100.0 + 200) * 3.2, pc.NetPay, 0.001);
+        }
+
+        [Test]
+        public void TestPayCommissionedEmployeeOnWrongDate()
+        {
+            const int empId = 31;
+            var t = new AddCommissionedEmployee(empId, "Bob", "Home", 2500.00, 3.2);
+            t.Execute();
+            var payDate = new DateTime(2020, 7, 17);
+            var pt = new PaydayTransaction(payDate);
+            pt.Execute();
+            var pc = pt.GetPaycheck(empId);
+            Assert.AreEqual(payDate, pc.PayDate);
+
+            var payDate2 = new DateTime(2020, 7, 24);
+            var pt2 = new PaydayTransaction(payDate2);
+            pt2.Execute();
+            var pc2 = pt2.GetPaycheck(empId);
+            Assert.IsNull(pc2);
         }
     }
 }
