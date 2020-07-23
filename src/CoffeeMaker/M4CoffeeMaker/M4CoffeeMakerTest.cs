@@ -1,92 +1,81 @@
+using AgileSoftwareDevelopment.CoffeeMaker.Domain;
 using NUnit.Framework;
 
 namespace AgileSoftwareDevelopment.CoffeeMaker.M4CoffeeMaker
 {
-    internal class CoffeeMakerStub : CoffeeMakerAPI
+    internal class CoffeeMakerStub : CoffeeMakerApi
     {
-        public bool buttonPressed;
-        public bool lightOn;
-        public bool boilerOn;
-        public bool valveClosed;
-        public bool plateOn;
-        public bool boilerEmpty;
-        public bool potPresent;
-        public bool potNotEmpty;
-
-        public CoffeeMakerStub()
-        {
-            buttonPressed = false;
-            lightOn = false;
-            boilerOn = false;
-            valveClosed = true;
-            plateOn = false;
-            boilerEmpty = true;
-            potPresent = true;
-            potNotEmpty = false;
-        }
+        public bool ButtonPressed { get; set; } = false;
+        public bool LightOn { get; set; } = false;
+        public bool BoilerOn { get; set; } = false;
+        public bool ValveClosed { get; set; } = true;
+        public bool PlateOn { get; set; } = false;
+        public bool BoilerEmpty { get; set; } = true;
+        public bool PotPresent { get; set; } = true;
+        public bool PotNotEmpty { get; set; } = false;
 
         public WarmerPlateStatus GetWarmerPlateStatus()
         {
-            if (!potPresent)
+            if (!PotPresent)
             {
-                return WarmerPlateStatus.WARMER_EMPTY;
+                return WarmerPlateStatus.WarmerEmpty;
             }
-            else if (potNotEmpty)
+            else if (PotNotEmpty)
             {
-                return WarmerPlateStatus.POT_NOT_EMPTY;
+                return WarmerPlateStatus.PotNotEmpty;
             }
             else
             {
-                return WarmerPlateStatus.POT_EMPTY;
+                return WarmerPlateStatus.PotEmpty;
             }
         }
 
         public BoilerStatus GetBoilerStatus()
         {
-            return boilerEmpty ? BoilerStatus.EMPTY : BoilerStatus.NOT_EMPTY;
+            return BoilerEmpty ? BoilerStatus.Empty : BoilerStatus.NotEmpty;
         }
 
         public BrewButtonStatus GetBrewButtonStatus()
         {
-            if (buttonPressed)
+            if (ButtonPressed)
             {
-                buttonPressed = false;
-                return BrewButtonStatus.PUSHED;
+                ButtonPressed = false;
+                return BrewButtonStatus.Pushed;
             }
             else
             {
-                return BrewButtonStatus.NOT_PUSHED;
+                return BrewButtonStatus.NotPushed;
             }
         }
 
         public void SetBoilerState(BoilerState boilerState)
         {
-            boilerOn = boilerState == BoilerState.ON;
+            BoilerOn = boilerState == BoilerState.On;
         }
 
         public void SetWarmerState(WarmerState warmerState)
         {
-            plateOn = warmerState == WarmerState.ON;
+            PlateOn = warmerState == WarmerState.On;
         }
 
         public void SetIndicatorState(IndicatorState indicatorState)
         {
-            lightOn = indicatorState == IndicatorState.ON;
+            LightOn = indicatorState == IndicatorState.On;
         }
 
         public void SetReliefValveState(ReliefValveState reliefValveState)
         {
-            valveClosed = reliefValveState == ReliefValveState.CLOSED;
+            ValveClosed = reliefValveState == ReliefValveState.Closed;
         }
     }
 
     [TestFixture]
     public class M4CoffeeMakerTest
     {
+        private CoffeeMakerStub api;
         private M4UserInterface ui;
         private M4HotWaterSource hws;
         private M4ContainmentVessel cv;
-        private CoffeeMakerStub api;
 
         [SetUp]
         public void SetUp()
@@ -112,53 +101,53 @@ namespace AgileSoftwareDevelopment.CoffeeMaker.M4CoffeeMaker
         public void InitialConditions()
         {
             Poll();
-            Assert.IsFalse(api.boilerOn);
-            Assert.IsFalse(api.lightOn);
-            Assert.IsFalse(api.plateOn);
-            Assert.IsTrue(api.valveClosed);
+            Assert.IsFalse(api.BoilerOn);
+            Assert.IsFalse(api.LightOn);
+            Assert.IsFalse(api.PlateOn);
+            Assert.IsTrue(api.ValveClosed);
         }
 
         [Test]
         public void StartNoPot()
         {
             Poll();
-            api.buttonPressed = true;
-            api.potPresent = false;
+            api.ButtonPressed = true;
+            api.PotPresent = false;
             Poll();
-            Assert.IsFalse(api.boilerOn);
-            Assert.IsFalse(api.lightOn);
-            Assert.IsFalse(api.plateOn);
-            Assert.IsTrue(api.valveClosed);
+            Assert.IsFalse(api.BoilerOn);
+            Assert.IsFalse(api.LightOn);
+            Assert.IsFalse(api.PlateOn);
+            Assert.IsTrue(api.ValveClosed);
         }
 
         [Test]
         public void StartNoWater()
         {
             Poll();
-            api.buttonPressed = true;
-            api.boilerEmpty = true;
+            api.ButtonPressed = true;
+            api.BoilerEmpty = true;
             Poll();
-            Assert.IsFalse(api.boilerOn);
-            Assert.IsFalse(api.lightOn);
-            Assert.IsFalse(api.plateOn);
-            Assert.IsTrue(api.valveClosed);
+            Assert.IsFalse(api.BoilerOn);
+            Assert.IsFalse(api.LightOn);
+            Assert.IsFalse(api.PlateOn);
+            Assert.IsTrue(api.ValveClosed);
         }
 
         [Test]
         public void GoodStart()
         {
             NormalStart();
-            Assert.IsTrue(api.boilerOn);
-            Assert.IsFalse(api.lightOn);
-            Assert.IsFalse(api.plateOn);
-            Assert.IsTrue(api.valveClosed);
+            Assert.IsTrue(api.BoilerOn);
+            Assert.IsFalse(api.LightOn);
+            Assert.IsFalse(api.PlateOn);
+            Assert.IsTrue(api.ValveClosed);
         }
 
         private void NormalStart()
         {
             Poll();
-            api.boilerEmpty = false;
-            api.buttonPressed = true;
+            api.BoilerEmpty = false;
+            api.ButtonPressed = true;
             Poll();
         }
 
@@ -166,58 +155,58 @@ namespace AgileSoftwareDevelopment.CoffeeMaker.M4CoffeeMaker
         public void StartedPotNotEmpty()
         {
             NormalStart();
-            api.potNotEmpty = true;
+            api.PotNotEmpty = true;
             Poll();
-            Assert.IsTrue(api.boilerOn);
-            Assert.IsFalse(api.lightOn);
-            Assert.IsTrue(api.plateOn);
-            Assert.IsTrue(api.valveClosed);
+            Assert.IsTrue(api.BoilerOn);
+            Assert.IsFalse(api.LightOn);
+            Assert.IsTrue(api.PlateOn);
+            Assert.IsTrue(api.ValveClosed);
         }
 
         [Test]
         public void PotRemovedAndReplacedWhileEmpty()
         {
             NormalStart();
-            api.potPresent = false;
+            api.PotPresent = false;
             Poll();
 
-            Assert.IsFalse(api.boilerOn);
-            Assert.IsFalse(api.lightOn);
-            Assert.IsFalse(api.plateOn);
-            Assert.IsFalse(api.valveClosed);
+            Assert.IsFalse(api.BoilerOn);
+            Assert.IsFalse(api.LightOn);
+            Assert.IsFalse(api.PlateOn);
+            Assert.IsFalse(api.ValveClosed);
 
-            api.potPresent = true;
+            api.PotPresent = true;
             Poll();
-            Assert.IsTrue(api.boilerOn);
-            Assert.IsFalse(api.lightOn);
-            Assert.IsFalse(api.plateOn);
-            Assert.IsTrue(api.valveClosed);
+            Assert.IsTrue(api.BoilerOn);
+            Assert.IsFalse(api.LightOn);
+            Assert.IsFalse(api.PlateOn);
+            Assert.IsTrue(api.ValveClosed);
         }
 
         [Test]
         public void PotRemovedWhileNotEmptyAndReplacedEmpty()
         {
             NormalFill();
-            api.potPresent = false;
+            api.PotPresent = false;
             Poll();
-            Assert.IsFalse(api.boilerOn);
-            Assert.IsFalse(api.lightOn);
-            Assert.IsFalse(api.plateOn);
-            Assert.IsFalse(api.valveClosed);
+            Assert.IsFalse(api.BoilerOn);
+            Assert.IsFalse(api.LightOn);
+            Assert.IsFalse(api.PlateOn);
+            Assert.IsFalse(api.ValveClosed);
 
-            api.potPresent = true;
-            api.potNotEmpty = false;
+            api.PotPresent = true;
+            api.PotNotEmpty = false;
             Poll();
-            Assert.IsTrue(api.boilerOn);
-            Assert.IsFalse(api.lightOn);
-            Assert.IsFalse(api.plateOn);
-            Assert.IsTrue(api.valveClosed);
+            Assert.IsTrue(api.BoilerOn);
+            Assert.IsFalse(api.LightOn);
+            Assert.IsFalse(api.PlateOn);
+            Assert.IsTrue(api.ValveClosed);
         }
 
         private void NormalFill()
         {
             NormalStart();
-            api.potNotEmpty = true;
+            api.PotNotEmpty = true;
             Poll();
         }
 
@@ -225,30 +214,30 @@ namespace AgileSoftwareDevelopment.CoffeeMaker.M4CoffeeMaker
         public void PotRemovedWhileNotEmptyAndReplacedNotEmpty()
         {
             NormalFill();
-            api.potPresent = false;
+            api.PotPresent = false;
             Poll();
-            api.potPresent = true;
+            api.PotPresent = true;
             Poll();
-            Assert.IsTrue(api.boilerOn);
-            Assert.IsFalse(api.lightOn);
-            Assert.IsTrue(api.plateOn);
-            Assert.IsTrue(api.valveClosed);
+            Assert.IsTrue(api.BoilerOn);
+            Assert.IsFalse(api.LightOn);
+            Assert.IsTrue(api.PlateOn);
+            Assert.IsTrue(api.ValveClosed);
         }
 
         [Test]
         public void BoilerEmptyPotNotEmpty()
         {
             NormalBrew();
-            Assert.IsFalse(api.boilerOn);
-            Assert.IsTrue(api.lightOn);
-            Assert.IsTrue(api.plateOn);
-            Assert.IsTrue(api.valveClosed);
+            Assert.IsFalse(api.BoilerOn);
+            Assert.IsTrue(api.LightOn);
+            Assert.IsTrue(api.PlateOn);
+            Assert.IsTrue(api.ValveClosed);
         }
 
         private void NormalBrew()
         {
             NormalFill();
-            api.boilerEmpty = true;
+            api.BoilerEmpty = true;
             Poll();
         }
 
@@ -256,33 +245,33 @@ namespace AgileSoftwareDevelopment.CoffeeMaker.M4CoffeeMaker
         public void BoilerEmptiesWhilePotRemoved()
         {
             NormalFill();
-            api.potPresent = false;
+            api.PotPresent = false;
             Poll();
-            api.boilerEmpty = true;
+            api.BoilerEmpty = true;
             Poll();
-            Assert.IsFalse(api.boilerOn);
-            Assert.IsTrue(api.lightOn);
-            Assert.IsFalse(api.plateOn);
-            Assert.IsTrue(api.valveClosed);
+            Assert.IsFalse(api.BoilerOn);
+            Assert.IsTrue(api.LightOn);
+            Assert.IsFalse(api.PlateOn);
+            Assert.IsTrue(api.ValveClosed);
 
-            api.potPresent = true;
+            api.PotPresent = true;
             Poll();
-            Assert.IsFalse(api.boilerOn);
-            Assert.IsTrue(api.lightOn);
-            Assert.IsTrue(api.plateOn);
-            Assert.IsTrue(api.valveClosed);
+            Assert.IsFalse(api.BoilerOn);
+            Assert.IsTrue(api.LightOn);
+            Assert.IsTrue(api.PlateOn);
+            Assert.IsTrue(api.ValveClosed);
         }
 
         [Test]
         public void EmptyPotReturnedAfter()
         {
             NormalBrew();
-            api.potNotEmpty = false;
+            api.PotNotEmpty = false;
             Poll();
-            Assert.IsFalse(api.boilerOn);
-            Assert.IsFalse(api.lightOn);
-            Assert.IsFalse(api.plateOn);
-            Assert.IsTrue(api.valveClosed);
+            Assert.IsFalse(api.BoilerOn);
+            Assert.IsFalse(api.LightOn);
+            Assert.IsFalse(api.PlateOn);
+            Assert.IsTrue(api.ValveClosed);
         }
     }
 }

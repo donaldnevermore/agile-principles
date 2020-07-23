@@ -1,15 +1,11 @@
-namespace AgileSoftwareDevelopment.CoffeeMaker
+namespace AgileSoftwareDevelopment.CoffeeMaker.Domain
 {
     public abstract class UserInterface
     {
+        protected bool isComplete = true;
+
         private HotWaterSource hws;
         private ContainmentVessel cv;
-        protected bool isComplete;
-
-        public UserInterface()
-        {
-            isComplete = true;
-        }
 
         public void Init(HotWaterSource hws, ContainmentVessel cv)
         {

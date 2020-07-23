@@ -1,10 +1,12 @@
+using AgileSoftwareDevelopment.CoffeeMaker.Domain;
+
 namespace AgileSoftwareDevelopment.CoffeeMaker.M4CoffeeMaker
 {
     public class M4UserInterface : UserInterface, Pollable
     {
-        private CoffeeMakerAPI api;
+        private CoffeeMakerApi api;
 
-        public M4UserInterface(CoffeeMakerAPI api)
+        public M4UserInterface(CoffeeMakerApi api)
         {
             this.api = api;
         }
@@ -13,7 +15,7 @@ namespace AgileSoftwareDevelopment.CoffeeMaker.M4CoffeeMaker
         {
             BrewButtonStatus buttonStatus = api.GetBrewButtonStatus();
 
-            if (buttonStatus == BrewButtonStatus.PUSHED)
+            if (buttonStatus == BrewButtonStatus.Pushed)
             {
                 StartBrewing();
             }
@@ -21,12 +23,12 @@ namespace AgileSoftwareDevelopment.CoffeeMaker.M4CoffeeMaker
 
         public override void Done()
         {
-            api.SetIndicatorState(IndicatorState.ON);
+            api.SetIndicatorState(IndicatorState.On);
         }
 
         public override void CompleteCycle()
         {
-            api.SetIndicatorState(IndicatorState.OFF);
+            api.SetIndicatorState(IndicatorState.Off);
         }
     }
 }

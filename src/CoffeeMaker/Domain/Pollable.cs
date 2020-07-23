@@ -1,4 +1,4 @@
-namespace AgileSoftwareDevelopment.CoffeeMaker
+namespace AgileSoftwareDevelopment.CoffeeMaker.Domain
 {
     public interface Pollable
     {

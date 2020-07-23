@@ -1,20 +1,22 @@
+using AgileSoftwareDevelopment.CoffeeMaker.Domain;
+
 namespace AgileSoftwareDevelopment.CoffeeMaker.M4CoffeeMaker
 {
     public class M4ContainmentVessel : ContainmentVessel, Pollable
     {
-        private CoffeeMakerAPI api;
+        private CoffeeMakerApi api;
         private WarmerPlateStatus lastPotStatus;
 
-        public M4ContainmentVessel(CoffeeMakerAPI api)
+        public M4ContainmentVessel(CoffeeMakerApi api)
         {
             this.api = api;
-            lastPotStatus = WarmerPlateStatus.POT_EMPTY;
+            lastPotStatus = WarmerPlateStatus.PotEmpty;
         }
 
         public override bool IsReady()
         {
             WarmerPlateStatus plateStatus = api.GetWarmerPlateStatus();
-            return plateStatus == WarmerPlateStatus.POT_EMPTY;
+            return plateStatus == WarmerPlateStatus.PotEmpty;
         }
 
         public void Poll()
@@ -38,38 +40,38 @@ namespace AgileSoftwareDevelopment.CoffeeMaker.M4CoffeeMaker
 
         private void HandleBrewingEvent(WarmerPlateStatus potStatus)
         {
-            if (potStatus == WarmerPlateStatus.POT_NOT_EMPTY)
+            if (potStatus == WarmerPlateStatus.PotNotEmpty)
             {
                 ContainerAvailable();
-                api.SetWarmerState(WarmerState.ON);
+                api.SetWarmerState(WarmerState.On);
             }
-            else if (potStatus == WarmerPlateStatus.WARMER_EMPTY)
+            else if (potStatus == WarmerPlateStatus.WarmerEmpty)
             {
                 ContainerUnavailable();
-                api.SetWarmerState(WarmerState.OFF);
+                api.SetWarmerState(WarmerState.Off);
             }
             else
             {
                 // potStatus == POT_EMPTY
                 ContainerAvailable();
-                api.SetWarmerState(WarmerState.OFF);
+                api.SetWarmerState(WarmerState.Off);
             }
         }
 
         private void HandleIncompleteEvent(WarmerPlateStatus potStatus)
         {
-            if (potStatus == WarmerPlateStatus.POT_NOT_EMPTY)
+            if (potStatus == WarmerPlateStatus.PotNotEmpty)
             {
-                api.SetWarmerState(WarmerState.ON);
+                api.SetWarmerState(WarmerState.On);
             }
-            else if (potStatus == WarmerPlateStatus.WARMER_EMPTY)
+            else if (potStatus == WarmerPlateStatus.WarmerEmpty)
             {
-                api.SetWarmerState(WarmerState.OFF);
+                api.SetWarmerState(WarmerState.Off);
             }
             else
             {
                 // potStatus == POT_EMPTY
-                api.SetWarmerState(WarmerState.OFF);
+                api.SetWarmerState(WarmerState.Off);
                 DeclareComplete();
             }
         }

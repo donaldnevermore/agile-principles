@@ -1,11 +1,12 @@
-namespace AgileSoftwareDevelopment.CoffeeMaker
+namespace AgileSoftwareDevelopment.CoffeeMaker.Domain
 {
     public abstract class ContainmentVessel
     {
-        private UserInterface ui;
-        private HotWaterSource hws;
         protected bool isBrewing;
         protected bool isComplete;
+
+        private UserInterface ui;
+        private HotWaterSource hws;
 
         public void Init(UserInterface ui, HotWaterSource hws)
         {

@@ -1,10 +1,12 @@
+using AgileSoftwareDevelopment.CoffeeMaker.Domain;
+
 namespace AgileSoftwareDevelopment.CoffeeMaker.M4CoffeeMaker
 {
     public class M4HotWaterSource : HotWaterSource, Pollable
     {
-        private CoffeeMakerAPI api;
+        private CoffeeMakerApi api;
 
-        public M4HotWaterSource(CoffeeMakerAPI api)
+        public M4HotWaterSource(CoffeeMakerApi api)
         {
             this.api = api;
         }
@@ -12,13 +14,13 @@ namespace AgileSoftwareDevelopment.CoffeeMaker.M4CoffeeMaker
         public override bool IsReady()
         {
             BoilerStatus boilerStatus = api.GetBoilerStatus();
-            return boilerStatus == BoilerStatus.NOT_EMPTY;
+            return boilerStatus == BoilerStatus.NotEmpty;
         }
 
         public override void StartBrewing()
         {
-            api.SetReliefValveState(ReliefValveState.CLOSED);
-            api.SetBoilerState(BoilerState.ON);
+            api.SetReliefValveState(ReliefValveState.Closed);
+            api.SetBoilerState(BoilerState.On);
         }
 
         public void Poll()
@@ -27,10 +29,10 @@ namespace AgileSoftwareDevelopment.CoffeeMaker.M4CoffeeMaker
 
             if (isBrewing)
             {
-                if (boilerStatus == BoilerStatus.EMPTY)
+                if (boilerStatus == BoilerStatus.Empty)
                 {
-                    api.SetBoilerState(BoilerState.OFF);
-                    api.SetReliefValveState(ReliefValveState.CLOSED);
+                    api.SetBoilerState(BoilerState.Off);
+                    api.SetReliefValveState(ReliefValveState.Closed);
                     DeclareDone();
                 }
             }
@@ -38,14 +40,14 @@ namespace AgileSoftwareDevelopment.CoffeeMaker.M4CoffeeMaker
 
         public override void Pause()
         {
-            api.SetBoilerState(BoilerState.OFF);
-            api.SetReliefValveState(ReliefValveState.OPEN);
+            api.SetBoilerState(BoilerState.Off);
+            api.SetReliefValveState(ReliefValveState.Open);
         }
 
         public override void Resume()
         {
-            api.SetBoilerState(BoilerState.ON);
-            api.SetReliefValveState(ReliefValveState.CLOSED);
+            api.SetBoilerState(BoilerState.On);
+            api.SetReliefValveState(ReliefValveState.Closed);
         }
     }
 }
