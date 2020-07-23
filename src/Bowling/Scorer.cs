@@ -3,12 +3,8 @@ namespace AgileSoftwareDevelopment.Bowling
     public class Scorer
     {
         private int ball;
-        private readonly int[] throws = new int[21];
         private int currentThrow;
-        private int NextTwoBallsForStrike => throws[ball + 1] + throws[ball + 2];
-        private int TwoBallsInFrame => throws[ball] + throws[ball + 1];
-        private int NextBallForSpare => throws[ball + 2];
-
+        private readonly int[] throws = new int[21];
 
         public void AddThrow(int pins)
         {
@@ -24,17 +20,17 @@ namespace AgileSoftwareDevelopment.Bowling
             {
                 if (Strike())
                 {
-                    score += 10 + NextTwoBallsForStrike;
+                    score += 10 + NextTwoBallsForStrike();
                     ball++;
                 }
                 else if (Spare())
                 {
-                    score += 10 + NextBallForSpare;
+                    score += 10 + NextBallForSpare();
                     ball += 2;
                 }
                 else
                 {
-                    score += TwoBallsInFrame;
+                    score += TwoBallsInFrame();
                     ball += 2;
                 }
             }
@@ -42,14 +38,14 @@ namespace AgileSoftwareDevelopment.Bowling
             return score;
         }
 
-        private bool Strike()
-        {
-            return throws[ball] == 10;
-        }
+        private bool Strike() => throws[ball] == 10;
 
-        private bool Spare()
-        {
-            return throws[ball] + throws[ball + 1] == 10;
-        }
+        private bool Spare() => throws[ball] + throws[ball + 1] == 10;
+
+        private int NextTwoBallsForStrike() => throws[ball + 1] + throws[ball + 2];
+
+        private int TwoBallsInFrame() => throws[ball] + throws[ball + 1];
+
+        private int NextBallForSpare() => throws[ball + 2];
     }
 }

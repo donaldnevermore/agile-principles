@@ -9,10 +9,7 @@ namespace AgileSoftwareDevelopment.Bowling
         private readonly Scorer scorer = new Scorer();
 
 
-        public int ScoreForFrame(int theFrame)
-        {
-            return scorer.ScoreForFrame(theFrame);
-        }
+        public int ScoreForFrame(int theFrame) => scorer.ScoreForFrame(theFrame);
 
         public void Add(int pins)
         {
@@ -32,16 +29,9 @@ namespace AgileSoftwareDevelopment.Bowling
             }
         }
 
-        private bool LastBallInFrame(int pins)
-        {
-            return Strike(pins) || !isFirstThrow;
-        }
+        private bool LastBallInFrame(int pins) => Strike(pins) || !isFirstThrow;
 
-        private bool Strike(int pins)
-        {
-            return isFirstThrow && pins == 10;
-        }
-
+        private bool Strike(int pins) => isFirstThrow && pins == 10;
 
         private void AdvanceFrame()
         {

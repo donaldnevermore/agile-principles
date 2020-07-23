@@ -11,7 +11,6 @@ namespace AgileSoftwareDevelopment.PrimeGenerator
         {
             if (maxValue < 2)
             {
-                // 对不合理值返回空数组
                 return new int[0];
             }
             else

@@ -18,7 +18,7 @@ namespace AgileSoftwareDevelopment.Bowling
         {
             game.Add(5);
             game.Add(4);
-            Assert.AreEqual(game.Score, 9);
+            Assert.AreEqual(9, game.Score);
         }
 
         [Test]
@@ -28,9 +28,9 @@ namespace AgileSoftwareDevelopment.Bowling
             game.Add(4);
             game.Add(7);
             game.Add(2);
-            Assert.AreEqual(game.Score, 18);
-            Assert.AreEqual(game.ScoreForFrame(1), 9);
-            Assert.AreEqual(game.ScoreForFrame(2), 18);
+            Assert.AreEqual(18, game.Score);
+            Assert.AreEqual(9, game.ScoreForFrame(1));
+            Assert.AreEqual(18, game.ScoreForFrame(2));
         }
 
         [Test]
@@ -39,7 +39,7 @@ namespace AgileSoftwareDevelopment.Bowling
             game.Add(3);
             game.Add(7);
             game.Add(3);
-            Assert.AreEqual(game.ScoreForFrame(1), 13);
+            Assert.AreEqual(13, game.ScoreForFrame(1));
         }
 
         [Test]

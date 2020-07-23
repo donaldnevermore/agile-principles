@@ -9,20 +9,20 @@ namespace AgileSoftwareDevelopment.PrimeGenerator
         public void TestPrimes()
         {
             int[] nullArray = PrimeGenerator.GeneratePrimeNumbers(0);
-            Assert.AreEqual(nullArray.Length, 0);
+            Assert.AreEqual(0, nullArray.Length);
 
             int[] minArray = PrimeGenerator.GeneratePrimeNumbers(2);
-            Assert.AreEqual(minArray.Length, 1);
-            Assert.AreEqual(minArray[0], 2);
+            Assert.AreEqual(1, minArray.Length);
+            Assert.AreEqual(2, minArray[0]);
 
             int[] threeArr = PrimeGenerator.GeneratePrimeNumbers(3);
-            Assert.AreEqual(threeArr.Length, 2);
-            Assert.AreEqual(threeArr[0], 2);
-            Assert.AreEqual(threeArr[1], 3);
+            Assert.AreEqual(2, threeArr.Length);
+            Assert.AreEqual(2, threeArr[0]);
+            Assert.AreEqual(3, threeArr[1]);
 
             int[] centArr = PrimeGenerator.GeneratePrimeNumbers(100);
-            Assert.AreEqual(centArr.Length, 25);
-            Assert.AreEqual(centArr[24], 97);
+            Assert.AreEqual(25, centArr.Length);
+            Assert.AreEqual(97, centArr[24]);
         }
 
         [Test]
