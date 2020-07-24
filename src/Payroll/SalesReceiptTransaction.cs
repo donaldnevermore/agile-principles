@@ -1,4 +1,5 @@
 ﻿using System;
+using AgileSoftwareDevelopment.Payroll.Classifications;
 
 namespace AgileSoftwareDevelopment.Payroll
 {

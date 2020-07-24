@@ -1,5 +1,10 @@
 ﻿using System;
 using NUnit.Framework;
+using AgileSoftwareDevelopment.Payroll.Affiliations;
+using AgileSoftwareDevelopment.Payroll.Application;
+using AgileSoftwareDevelopment.Payroll.Classifications;
+using AgileSoftwareDevelopment.Payroll.Methods;
+using AgileSoftwareDevelopment.Payroll.Schedules;
 
 namespace AgileSoftwareDevelopment.Payroll
 {
