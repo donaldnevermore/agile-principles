@@ -1,14 +1,11 @@
 ﻿using AgileSoftwareDevelopment.Payroll.Domain;
 using AgileSoftwareDevelopment.Payroll.Schedules;
 
-namespace AgileSoftwareDevelopment.Payroll.Classifications
-{
-    public class ChangeSalariedTransaction : ChangeClassificationTransaction
-    {
+namespace AgileSoftwareDevelopment.Payroll.Classifications {
+    public class ChangeSalariedTransaction : ChangeClassificationTransaction {
         private readonly double salary;
 
-        public ChangeSalariedTransaction(int id, double salary) : base(id)
-        {
+        public ChangeSalariedTransaction(int id, double salary) : base(id) {
             this.salary = salary;
         }
 

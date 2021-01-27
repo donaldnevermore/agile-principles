@@ -1,7 +1,5 @@
-﻿namespace AgileSoftwareDevelopment.Regulator
-{
-    public interface Heater
-    {
+﻿namespace AgileSoftwareDevelopment.Regulator {
+    public interface Heater {
         void Engage();
         void Disengage();
     }

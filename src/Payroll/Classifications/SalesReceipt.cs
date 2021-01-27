@@ -1,14 +1,11 @@
 ﻿using System;
 
-namespace AgileSoftwareDevelopment.Payroll.Classifications
-{
-    public class SalesReceipt
-    {
+namespace AgileSoftwareDevelopment.Payroll.Classifications {
+    public class SalesReceipt {
         public DateTime Date { get; }
         public double Amount { get; }
 
-        public SalesReceipt(DateTime date, double amount)
-        {
+        public SalesReceipt(DateTime date, double amount) {
             Date = date;
             Amount = amount;
         }

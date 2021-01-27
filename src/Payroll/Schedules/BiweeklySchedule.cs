@@ -1,22 +1,17 @@
 ﻿using System;
 using AgileSoftwareDevelopment.Payroll.Domain;
 
-namespace AgileSoftwareDevelopment.Payroll.Schedules
-{
-    public class BiweeklySchedule : PayrollSchedule
-    {
+namespace AgileSoftwareDevelopment.Payroll.Schedules {
+    public class BiweeklySchedule : PayrollSchedule {
         private DateTime? previousPayDate = null;
 
-        public bool IsPayDate(DateTime payDate)
-        {
-            if (payDate.DayOfWeek != DayOfWeek.Friday)
-            {
+        public bool IsPayDate(DateTime payDate) {
+            if (payDate.DayOfWeek != DayOfWeek.Friday) {
                 return false;
             }
 
             // First pay or every other week
-            if (previousPayDate == null || (payDate - previousPayDate == TimeSpan.FromDays(14)))
-            {
+            if (previousPayDate == null || (payDate - previousPayDate == TimeSpan.FromDays(14))) {
                 previousPayDate = payDate;
                 return true;
             }
@@ -24,8 +19,7 @@ namespace AgileSoftwareDevelopment.Payroll.Schedules
             return false;
         }
 
-        public DateTime GetPayPeriodStartDate(DateTime date)
-        {
+        public DateTime GetPayPeriodStartDate(DateTime date) {
             // Avoid duplicate pay.
             return date.AddDays(-13);
         }

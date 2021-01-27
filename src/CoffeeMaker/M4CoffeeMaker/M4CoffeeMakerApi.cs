@@ -1,9 +1,7 @@
 using AgileSoftwareDevelopment.CoffeeMaker.Domain;
 
-namespace AgileSoftwareDevelopment.CoffeeMaker.M4CoffeeMaker
-{
-    public class M4CoffeeMakerApi : CoffeeMakerApi
-    {
+namespace AgileSoftwareDevelopment.CoffeeMaker.M4CoffeeMaker {
+    public class M4CoffeeMakerApi : CoffeeMakerApi {
         public bool ButtonPressed { get; set; } = false;
         public bool LightOn { get; set; } = false;
         public bool BoilerOn { get; set; } = false;
@@ -13,57 +11,45 @@ namespace AgileSoftwareDevelopment.CoffeeMaker.M4CoffeeMaker
         public bool PotPresent { get; set; } = true;
         public bool PotNotEmpty { get; set; } = false;
 
-        public WarmerPlateStatus GetWarmerPlateStatus()
-        {
-            if (!PotPresent)
-            {
+        public WarmerPlateStatus GetWarmerPlateStatus() {
+            if (!PotPresent) {
                 return WarmerPlateStatus.WarmerEmpty;
             }
-            else if (PotNotEmpty)
-            {
+            else if (PotNotEmpty) {
                 return WarmerPlateStatus.PotNotEmpty;
             }
-            else
-            {
+            else {
                 return WarmerPlateStatus.PotEmpty;
             }
         }
 
-        public BoilerStatus GetBoilerStatus()
-        {
+        public BoilerStatus GetBoilerStatus() {
             return BoilerEmpty ? BoilerStatus.Empty : BoilerStatus.NotEmpty;
         }
 
-        public BrewButtonStatus GetBrewButtonStatus()
-        {
-            if (ButtonPressed)
-            {
+        public BrewButtonStatus GetBrewButtonStatus() {
+            if (ButtonPressed) {
                 ButtonPressed = false;
                 return BrewButtonStatus.Pushed;
             }
-            else
-            {
+            else {
                 return BrewButtonStatus.NotPushed;
             }
         }
 
-        public void SetBoilerState(BoilerState boilerState)
-        {
+        public void SetBoilerState(BoilerState boilerState) {
             BoilerOn = boilerState == BoilerState.On;
         }
 
-        public void SetWarmerState(WarmerState warmerState)
-        {
+        public void SetWarmerState(WarmerState warmerState) {
             PlateOn = warmerState == WarmerState.On;
         }
 
-        public void SetIndicatorState(IndicatorState indicatorState)
-        {
+        public void SetIndicatorState(IndicatorState indicatorState) {
             LightOn = indicatorState == IndicatorState.On;
         }
 
-        public void SetReliefValveState(ReliefValveState reliefValveState)
-        {
+        public void SetReliefValveState(ReliefValveState reliefValveState) {
             ValveClosed = reliefValveState == ReliefValveState.Closed;
         }
     }

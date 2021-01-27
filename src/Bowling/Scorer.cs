@@ -1,35 +1,27 @@
-namespace AgileSoftwareDevelopment.Bowling
-{
-    public class Scorer
-    {
+namespace AgileSoftwareDevelopment.Bowling {
+    public class Scorer {
         private int ball;
         private int currentThrow;
         private readonly int[] throws = new int[21];
 
-        public void AddThrow(int pins)
-        {
+        public void AddThrow(int pins) {
             throws[currentThrow] = pins;
             currentThrow++;
         }
 
-        public int ScoreForFrame(int theFrame)
-        {
+        public int ScoreForFrame(int theFrame) {
             ball = 0;
             int score = 0;
-            for (int currentFrame = 0; currentFrame < theFrame; currentFrame++)
-            {
-                if (Strike())
-                {
+            for (int currentFrame = 0; currentFrame < theFrame; currentFrame++) {
+                if (Strike()) {
                     score += 10 + NextTwoBallsForStrike();
                     ball++;
                 }
-                else if (Spare())
-                {
+                else if (Spare()) {
                     score += 10 + NextBallForSpare();
                     ball += 2;
                 }
-                else
-                {
+                else {
                     score += TwoBallsInFrame();
                     ball += 2;
                 }

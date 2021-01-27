@@ -1,14 +1,11 @@
 ﻿using AgileSoftwareDevelopment.Payroll.Domain;
 using AgileSoftwareDevelopment.Payroll.Schedules;
 
-namespace AgileSoftwareDevelopment.Payroll.Classifications
-{
-    public class ChangeHourlyTransaction : ChangeClassificationTransaction
-    {
+namespace AgileSoftwareDevelopment.Payroll.Classifications {
+    public class ChangeHourlyTransaction : ChangeClassificationTransaction {
         private readonly double hourlyRate;
 
-        public ChangeHourlyTransaction(int id, double hourlyRate) : base(id)
-        {
+        public ChangeHourlyTransaction(int id, double hourlyRate) : base(id) {
             this.hourlyRate = hourlyRate;
         }
 

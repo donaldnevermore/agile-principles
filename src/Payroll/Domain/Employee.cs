@@ -1,9 +1,7 @@
 ﻿using System;
 
-namespace AgileSoftwareDevelopment.Payroll.Domain
-{
-    public class Employee
-    {
+namespace AgileSoftwareDevelopment.Payroll.Domain {
+    public class Employee {
         public string Name { get; set; }
         public string Address { get; set; }
         public PayrollClassification Classification { get; set; }
@@ -13,15 +11,13 @@ namespace AgileSoftwareDevelopment.Payroll.Domain
 
         private readonly int empId;
 
-        public Employee(int empId, string name, string address)
-        {
+        public Employee(int empId, string name, string address) {
             this.empId = empId;
             Name = name;
             Address = address;
         }
 
-        public void Payday(Paycheck paycheck)
-        {
+        public void Payday(Paycheck paycheck) {
             var grossPay = Classification.CalculatePay(paycheck);
             var deductions = Affiliation.CalculateDeductions(paycheck);
             var netPay = grossPay - deductions;
@@ -31,13 +27,11 @@ namespace AgileSoftwareDevelopment.Payroll.Domain
             Method.Pay(paycheck);
         }
 
-        public bool IsPayDate(DateTime payDate)
-        {
+        public bool IsPayDate(DateTime payDate) {
             return Schedule.IsPayDate(payDate);
         }
 
-        public DateTime GetPayPeriodStartDate(DateTime date)
-        {
+        public DateTime GetPayPeriodStartDate(DateTime date) {
             return Schedule.GetPayPeriodStartDate(date);
         }
     }

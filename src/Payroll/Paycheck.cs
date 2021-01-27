@@ -1,9 +1,7 @@
 ﻿using System;
 
-namespace AgileSoftwareDevelopment.Payroll
-{
-    public class Paycheck
-    {
+namespace AgileSoftwareDevelopment.Payroll {
+    public class Paycheck {
         public double GrossPay { get; set; }
         public double Deductions { get; set; }
         public double NetPay { get; set; }
@@ -11,15 +9,13 @@ namespace AgileSoftwareDevelopment.Payroll
         public DateTime PayPeriodStartDate { get; }
         public DateTime PayPeriodEndDate { get; }
 
-        public Paycheck(DateTime startDate, DateTime payDate)
-        {
+        public Paycheck(DateTime startDate, DateTime payDate) {
             PayPeriodStartDate = startDate;
             PayPeriodEndDate = payDate;
             PayDate = payDate;
         }
 
-        public string GetField(string field)
-        {
+        public string GetField(string field) {
             // TODO:
             return "Hold";
         }

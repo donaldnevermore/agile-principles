@@ -1,7 +1,5 @@
-﻿namespace AgileSoftwareDevelopment.ClockDriver
-{
-    public interface Observer
-    {
+﻿namespace AgileSoftwareDevelopment.ClockDriver {
+    public interface Observer {
         void Update();
     }
 }

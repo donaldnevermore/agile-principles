@@ -1,24 +1,20 @@
 ﻿using NUnit.Framework;
 
-namespace AgileSoftwareDevelopment.ClockDriver
-{
+namespace AgileSoftwareDevelopment.ClockDriver {
     [TestFixture]
-    public class ObserverTest
-    {
+    public class ObserverTest {
         private MockTimeSource source;
         private MockTimeSink sink;
 
         [SetUp]
-        public void SetUp()
-        {
+        public void SetUp() {
             source = new MockTimeSource();
             sink = new MockTimeSink(source);
             source.RegisterObserver(sink);
         }
 
         [Test]
-        public void TestTimeChange()
-        {
+        public void TestTimeChange() {
             source.SetTime(3, 4, 5);
             AssertSinkEquals(sink, 3, 4, 5);
 
@@ -27,8 +23,7 @@ namespace AgileSoftwareDevelopment.ClockDriver
         }
 
         [Test]
-        public void TestMultipleSinks()
-        {
+        public void TestMultipleSinks() {
             var sink2 = new MockTimeSink(source);
             source.RegisterObserver(sink2);
 
@@ -37,8 +32,7 @@ namespace AgileSoftwareDevelopment.ClockDriver
             AssertSinkEquals(sink2, 12, 13, 14);
         }
 
-        private void AssertSinkEquals(MockTimeSink sink, int hours, int mins, int secs)
-        {
+        private void AssertSinkEquals(MockTimeSink sink, int hours, int mins, int secs) {
             Assert.AreEqual(hours, sink.Hours);
             Assert.AreEqual(mins, sink.Minutes);
             Assert.AreEqual(secs, sink.Seconds);

@@ -1,11 +1,8 @@
 using AgileSoftwareDevelopment.CoffeeMaker.Domain;
 
-namespace AgileSoftwareDevelopment.CoffeeMaker.M4CoffeeMaker
-{
-    public class M4CoffeeMaker
-    {
-        public static void Start()
-        {
+namespace AgileSoftwareDevelopment.CoffeeMaker.M4CoffeeMaker {
+    public class M4CoffeeMaker {
+        public static void Start() {
             var api = new M4CoffeeMakerApi();
             var ui = new M4UserInterface(api);
             var hws = new M4HotWaterSource(api);
@@ -15,8 +12,7 @@ namespace AgileSoftwareDevelopment.CoffeeMaker.M4CoffeeMaker
             hws.Init(ui, cv);
             cv.Init(ui, hws);
 
-            while (true)
-            {
+            while (true) {
                 ui.Poll();
                 hws.Poll();
                 cv.Poll();

@@ -1,15 +1,11 @@
 ﻿using AgileSoftwareDevelopment.Payroll.Domain;
 
-namespace AgileSoftwareDevelopment.Payroll.Affiliations
-{
-    public abstract class ChangeAffiliationTransaction : ChangeEmployeeTransaction
-    {
-        public ChangeAffiliationTransaction(int empId) : base(empId)
-        {
+namespace AgileSoftwareDevelopment.Payroll.Affiliations {
+    public abstract class ChangeAffiliationTransaction : ChangeEmployeeTransaction {
+        public ChangeAffiliationTransaction(int empId) : base(empId) {
         }
 
-        protected override void Change(Employee e)
-        {
+        protected override void Change(Employee e) {
             RecordMembership(e);
             e.Affiliation = Affiliation;
         }

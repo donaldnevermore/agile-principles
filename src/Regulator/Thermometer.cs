@@ -1,7 +1,5 @@
-﻿namespace AgileSoftwareDevelopment.Regulator
-{
-    public interface Thermometer
-    {
+﻿namespace AgileSoftwareDevelopment.Regulator {
+    public interface Thermometer {
         double Read();
     }
 }

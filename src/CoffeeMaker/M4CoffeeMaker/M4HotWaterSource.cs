@@ -1,36 +1,28 @@
 using AgileSoftwareDevelopment.CoffeeMaker.Domain;
 
-namespace AgileSoftwareDevelopment.CoffeeMaker.M4CoffeeMaker
-{
-    public class M4HotWaterSource : HotWaterSource, Pollable
-    {
+namespace AgileSoftwareDevelopment.CoffeeMaker.M4CoffeeMaker {
+    public class M4HotWaterSource : HotWaterSource, Pollable {
         private CoffeeMakerApi api;
 
-        public M4HotWaterSource(CoffeeMakerApi api)
-        {
+        public M4HotWaterSource(CoffeeMakerApi api) {
             this.api = api;
         }
 
-        public override bool IsReady()
-        {
+        public override bool IsReady() {
             BoilerStatus boilerStatus = api.GetBoilerStatus();
             return boilerStatus == BoilerStatus.NotEmpty;
         }
 
-        public override void StartBrewing()
-        {
+        public override void StartBrewing() {
             api.SetReliefValveState(ReliefValveState.Closed);
             api.SetBoilerState(BoilerState.On);
         }
 
-        public void Poll()
-        {
+        public void Poll() {
             BoilerStatus boilerStatus = api.GetBoilerStatus();
 
-            if (isBrewing)
-            {
-                if (boilerStatus == BoilerStatus.Empty)
-                {
+            if (isBrewing) {
+                if (boilerStatus == BoilerStatus.Empty) {
                     api.SetBoilerState(BoilerState.Off);
                     api.SetReliefValveState(ReliefValveState.Closed);
                     DeclareDone();
@@ -38,14 +30,12 @@ namespace AgileSoftwareDevelopment.CoffeeMaker.M4CoffeeMaker
             }
         }
 
-        public override void Pause()
-        {
+        public override void Pause() {
             api.SetBoilerState(BoilerState.Off);
             api.SetReliefValveState(ReliefValveState.Open);
         }
 
-        public override void Resume()
-        {
+        public override void Resume() {
             api.SetBoilerState(BoilerState.On);
             api.SetReliefValveState(ReliefValveState.Closed);
         }

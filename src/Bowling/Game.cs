@@ -1,7 +1,5 @@
-namespace AgileSoftwareDevelopment.Bowling
-{
-    public class Game
-    {
+namespace AgileSoftwareDevelopment.Bowling {
+    public class Game {
         public int Score => ScoreForFrame(currentFrame);
 
         private int currentFrame = 0;
@@ -11,20 +9,16 @@ namespace AgileSoftwareDevelopment.Bowling
 
         public int ScoreForFrame(int theFrame) => scorer.ScoreForFrame(theFrame);
 
-        public void Add(int pins)
-        {
+        public void Add(int pins) {
             scorer.AddThrow(pins);
             AdjustCurrentFrame(pins);
         }
 
-        private void AdjustCurrentFrame(int pins)
-        {
-            if (LastBallInFrame(pins))
-            {
+        private void AdjustCurrentFrame(int pins) {
+            if (LastBallInFrame(pins)) {
                 AdvanceFrame();
             }
-            else
-            {
+            else {
                 isFirstThrow = false;
             }
         }
@@ -33,11 +27,9 @@ namespace AgileSoftwareDevelopment.Bowling
 
         private bool Strike(int pins) => isFirstThrow && pins == 10;
 
-        private void AdvanceFrame()
-        {
+        private void AdvanceFrame() {
             currentFrame++;
-            if (currentFrame > 10)
-            {
+            if (currentFrame > 10) {
                 currentFrame = 10;
             }
         }

@@ -2,44 +2,35 @@
 using System.Collections.Generic;
 using AgileSoftwareDevelopment.Payroll.Domain;
 
-namespace AgileSoftwareDevelopment.Payroll.Classifications
-{
-    public class CommissionedClassification : PayrollClassification
-    {
+namespace AgileSoftwareDevelopment.Payroll.Classifications {
+    public class CommissionedClassification : PayrollClassification {
         public double Salary { get; }
         public double CommissionRate { get; }
 
         private Dictionary<DateTime, SalesReceipt> salesReceipts = new Dictionary<DateTime, SalesReceipt>();
 
-        public CommissionedClassification(double salary, double commissionRate)
-        {
+        public CommissionedClassification(double salary, double commissionRate) {
             Salary = salary;
             CommissionRate = commissionRate;
         }
 
-        public void AddSalesReceipt(SalesReceipt salesReceipt)
-        {
+        public void AddSalesReceipt(SalesReceipt salesReceipt) {
             salesReceipts.Add(salesReceipt.Date, salesReceipt);
         }
 
-        public SalesReceipt GetSalesReceipt(DateTime date)
-        {
+        public SalesReceipt GetSalesReceipt(DateTime date) {
             return salesReceipts[date];
         }
 
-        public double CalculatePay(Paycheck paycheck)
-        {
+        public double CalculatePay(Paycheck paycheck) {
             var totalPay = 0.0;
 
-            if (IsSalaryInPayPeriod(paycheck))
-            {
+            if (IsSalaryInPayPeriod(paycheck)) {
                 totalPay += Salary;
             }
 
-            foreach (var salesReceipt in salesReceipts.Values)
-            {
-                if (InInPayPeriod(salesReceipt, paycheck))
-                {
+            foreach (var salesReceipt in salesReceipts.Values) {
+                if (InInPayPeriod(salesReceipt, paycheck)) {
                     totalPay += salesReceipt.Amount * CommissionRate;
                 }
             }
@@ -47,25 +38,21 @@ namespace AgileSoftwareDevelopment.Payroll.Classifications
             return totalPay;
         }
 
-        private bool IsSalaryInPayPeriod(Paycheck paycheck)
-        {
+        private bool IsSalaryInPayPeriod(Paycheck paycheck) {
             var date = paycheck.PayDate;
-            if (DateUtil.IsLastDayOfMonth(date))
-            {
+            if (DateUtil.IsLastDayOfMonth(date)) {
                 return true;
             }
 
             var lastDayOfPreviousMonth = date.AddDays(-date.Day);
-            if (DateUtil.IsInPayPeriod(lastDayOfPreviousMonth, paycheck))
-            {
+            if (DateUtil.IsInPayPeriod(lastDayOfPreviousMonth, paycheck)) {
                 return true;
             }
 
             return false;
         }
 
-        private bool InInPayPeriod(SalesReceipt salesReceipt, Paycheck paycheck)
-        {
+        private bool InInPayPeriod(SalesReceipt salesReceipt, Paycheck paycheck) {
             return DateUtil.IsInPayPeriod(salesReceipt.Date, paycheck);
         }
     }

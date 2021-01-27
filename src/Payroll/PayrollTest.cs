@@ -6,14 +6,11 @@ using AgileSoftwareDevelopment.Payroll.Classifications;
 using AgileSoftwareDevelopment.Payroll.Methods;
 using AgileSoftwareDevelopment.Payroll.Schedules;
 
-namespace AgileSoftwareDevelopment.Payroll
-{
+namespace AgileSoftwareDevelopment.Payroll {
     [TestFixture]
-    public class PayrollTest
-    {
+    public class PayrollTest {
         [Test]
-        public void TestAddSalariedEmployee()
-        {
+        public void TestAddSalariedEmployee() {
             const int empId = 1;
             var t = new AddSalariedEmployee(empId, "Bob", "Home", 1000.00);
             t.Execute();
@@ -34,8 +31,7 @@ namespace AgileSoftwareDevelopment.Payroll
         }
 
         [Test]
-        public void TestAddHourlyEmployee()
-        {
+        public void TestAddHourlyEmployee() {
             const int empId = 2;
             var t = new AddHourlyEmployee(empId, "Bill", "Home", 0.5);
             t.Execute();
@@ -56,8 +52,7 @@ namespace AgileSoftwareDevelopment.Payroll
         }
 
         [Test]
-        public void TestAddCommissionedEmployee()
-        {
+        public void TestAddCommissionedEmployee() {
             const int empId = 3;
             var t = new AddCommissionedEmployee(empId, "Bill", "Home", 2500.00, 3.2);
             t.Execute();
@@ -79,8 +74,7 @@ namespace AgileSoftwareDevelopment.Payroll
         }
 
         [Test]
-        public void TestDeleteEmployee()
-        {
+        public void TestDeleteEmployee() {
             const int empId = 4;
             var t = new AddCommissionedEmployee(empId, "Bill", "Home", 2500, 3.2);
             t.Execute();
@@ -96,8 +90,7 @@ namespace AgileSoftwareDevelopment.Payroll
         }
 
         [Test]
-        public void TestTimeCardTransaction()
-        {
+        public void TestTimeCardTransaction() {
             const int empId = 5;
             var t = new AddHourlyEmployee(empId, "Bill", "Home", 15.25);
             t.Execute();
@@ -117,8 +110,7 @@ namespace AgileSoftwareDevelopment.Payroll
         }
 
         [Test]
-        public void TestSalesReceiptTransaction()
-        {
+        public void TestSalesReceiptTransaction() {
             const int empId = 6;
             var t = new AddCommissionedEmployee(empId, "Bill", "Home", 2500.00, 3.2);
             t.Execute();
@@ -138,8 +130,7 @@ namespace AgileSoftwareDevelopment.Payroll
         }
 
         [Test]
-        public void TestAddServiceCharge()
-        {
+        public void TestAddServiceCharge() {
             const int empId = 7;
             var t = new AddHourlyEmployee(empId, "Bill", "Home", 15.25);
             t.Execute();
@@ -157,8 +148,7 @@ namespace AgileSoftwareDevelopment.Payroll
         }
 
         [Test]
-        public void TestChangeNameTransaction()
-        {
+        public void TestChangeNameTransaction() {
             const int empId = 8;
             var t = new AddHourlyEmployee(empId, "Bill", "Home", 15.25);
             t.Execute();
@@ -170,8 +160,7 @@ namespace AgileSoftwareDevelopment.Payroll
         }
 
         [Test]
-        public void TestChangeAddressTransaction()
-        {
+        public void TestChangeAddressTransaction() {
             const int empId = 9;
             var t = new AddHourlyEmployee(empId, "Bill", "Home", 15.25);
             t.Execute();
@@ -183,8 +172,7 @@ namespace AgileSoftwareDevelopment.Payroll
         }
 
         [Test]
-        public void TestChangeHourlyTransaction()
-        {
+        public void TestChangeHourlyTransaction() {
             const int empId = 10;
             var t = new AddCommissionedEmployee(empId, "Lance", "Home", 2500, 3.2);
             t.Execute();
@@ -202,8 +190,7 @@ namespace AgileSoftwareDevelopment.Payroll
         }
 
         [Test]
-        public void TestChangeSalariedTransaction()
-        {
+        public void TestChangeSalariedTransaction() {
             const int empId = 11;
             var t = new AddHourlyEmployee(empId, "Lance", "Home", 27.52);
             t.Execute();
@@ -221,8 +208,7 @@ namespace AgileSoftwareDevelopment.Payroll
         }
 
         [Test]
-        public void TestChangeCommissionedTransaction()
-        {
+        public void TestChangeCommissionedTransaction() {
             const int empId = 12;
             var t = new AddHourlyEmployee(empId, "Lance", "Home", 27.52);
             t.Execute();
@@ -241,8 +227,7 @@ namespace AgileSoftwareDevelopment.Payroll
         }
 
         [Test]
-        public void TestChangeDirectTransaction()
-        {
+        public void TestChangeDirectTransaction() {
             const int empId = 13;
             var t = new AddSalariedEmployee(empId, "Bill", "Home", 2500.00);
             t.Execute();
@@ -259,8 +244,7 @@ namespace AgileSoftwareDevelopment.Payroll
         }
 
         [Test]
-        public void TestChangeMailTransaction()
-        {
+        public void TestChangeMailTransaction() {
             const int empId = 14;
             var t = new AddSalariedEmployee(empId, "Bill", "Home", 2500.00);
             t.Execute();
@@ -276,8 +260,7 @@ namespace AgileSoftwareDevelopment.Payroll
         }
 
         [Test]
-        public void TestChangeHoldTransaction()
-        {
+        public void TestChangeHoldTransaction() {
             const int empId = 15;
             var t = new AddSalariedEmployee(empId, "Bill", "Home", 2500.00);
             t.Execute();
@@ -293,8 +276,7 @@ namespace AgileSoftwareDevelopment.Payroll
         }
 
         [Test]
-        public void TestChangeUnionMember()
-        {
+        public void TestChangeUnionMember() {
             const int empId = 16;
             var t = new AddHourlyEmployee(empId, "Bill", "Home", 15.25);
             t.Execute();
@@ -314,8 +296,7 @@ namespace AgileSoftwareDevelopment.Payroll
         }
 
         [Test]
-        public void TestPaySingleSalariedEmployee()
-        {
+        public void TestPaySingleSalariedEmployee() {
             const int empId = 17;
             var t = new AddSalariedEmployee(empId, "Bob", "Home", 1000.00);
             t.Execute();
@@ -332,8 +313,7 @@ namespace AgileSoftwareDevelopment.Payroll
         }
 
         [Test]
-        public void TestPaySingleSalariedEmployeeOnWrongDate()
-        {
+        public void TestPaySingleSalariedEmployeeOnWrongDate() {
             const int empId = 18;
             var t = new AddSalariedEmployee(empId, "Bob", "Home", 1000.00);
             t.Execute();
@@ -345,8 +325,7 @@ namespace AgileSoftwareDevelopment.Payroll
         }
 
         [Test]
-        public void TestPayingSingleHourlyEmployeeNoTimeCards()
-        {
+        public void TestPayingSingleHourlyEmployeeNoTimeCards() {
             const int empId = 19;
             var t = new AddHourlyEmployee(empId, "Bill", "Home", 15.25);
             t.Execute();
@@ -356,8 +335,7 @@ namespace AgileSoftwareDevelopment.Payroll
             ValidateHourlyPaycheck(pt, empId, payDate, 0.0);
         }
 
-        private void ValidateHourlyPaycheck(PaydayTransaction pt, int empId, DateTime payDate, double pay)
-        {
+        private void ValidateHourlyPaycheck(PaydayTransaction pt, int empId, DateTime payDate, double pay) {
             var pc = pt.GetPaycheck(empId);
             Assert.IsNotNull(pc);
 
@@ -369,8 +347,7 @@ namespace AgileSoftwareDevelopment.Payroll
         }
 
         [Test]
-        public void TestPaySingleHourlyEmployeeOneTimeCard()
-        {
+        public void TestPaySingleHourlyEmployeeOneTimeCard() {
             const int empId = 20;
             var t = new AddHourlyEmployee(empId, "Bill", "Home", 15.25);
             t.Execute();
@@ -385,8 +362,7 @@ namespace AgileSoftwareDevelopment.Payroll
         }
 
         [Test]
-        public void TestPaySingleHourlyEmployeeOvertimeOneTimeCard()
-        {
+        public void TestPaySingleHourlyEmployeeOvertimeOneTimeCard() {
             const int empId = 21;
             var t = new AddHourlyEmployee(empId, "Bill", "Home", 15.25);
             t.Execute();
@@ -401,8 +377,7 @@ namespace AgileSoftwareDevelopment.Payroll
         }
 
         [Test]
-        public void TestPaySingleHourlyEmployeeOnWrongDate()
-        {
+        public void TestPaySingleHourlyEmployeeOnWrongDate() {
             const int empId = 22;
             var t = new AddHourlyEmployee(empId, "Bill", "Home", 15.25);
             t.Execute();
@@ -419,8 +394,7 @@ namespace AgileSoftwareDevelopment.Payroll
         }
 
         [Test]
-        public void TestPaySingleHourlyEmployeeTwoTimeCards()
-        {
+        public void TestPaySingleHourlyEmployeeTwoTimeCards() {
             const int empId = 23;
             var t = new AddHourlyEmployee(empId, "Bill", "Home", 15.25);
             t.Execute();
@@ -437,8 +411,7 @@ namespace AgileSoftwareDevelopment.Payroll
         }
 
         [Test]
-        public void TestPaySingleHourlyEmployeeWithTimeCardsSpanningTwoPayPeriods()
-        {
+        public void TestPaySingleHourlyEmployeeWithTimeCardsSpanningTwoPayPeriods() {
             const int empId = 24;
             var t = new AddHourlyEmployee(empId, "Bill", "Home", 15.25);
             t.Execute();
@@ -456,8 +429,7 @@ namespace AgileSoftwareDevelopment.Payroll
         }
 
         [Test]
-        public void TestSalariedUnionMemberDues()
-        {
+        public void TestSalariedUnionMemberDues() {
             const int empId = 25;
             var t = new AddSalariedEmployee(empId, "Bob", "Home", 1000.00);
             t.Execute();
@@ -478,8 +450,7 @@ namespace AgileSoftwareDevelopment.Payroll
         }
 
         [Test]
-        public void TestHourlyUnionMemberServiceCharge()
-        {
+        public void TestHourlyUnionMemberServiceCharge() {
             const int empId = 26;
             var t = new AddHourlyEmployee(empId, "Bill", "Home", 15.24);
             t.Execute();
@@ -504,8 +475,7 @@ namespace AgileSoftwareDevelopment.Payroll
         }
 
         [Test]
-        public void TestServiceChargesSpanningMultiplePayPeriods()
-        {
+        public void TestServiceChargesSpanningMultiplePayPeriods() {
             const int empId = 27;
             var t = new AddHourlyEmployee(empId, "Bill", "Home", 15.24);
             t.Execute();
@@ -539,8 +509,7 @@ namespace AgileSoftwareDevelopment.Payroll
         }
 
         [Test]
-        public void TestPayCommissionedEmployeeNoSalesReceipts()
-        {
+        public void TestPayCommissionedEmployeeNoSalesReceipts() {
             const int empId = 28;
             var t = new AddCommissionedEmployee(empId, "Bob", "Home", 2500.00, 3.2);
             t.Execute();
@@ -570,8 +539,7 @@ namespace AgileSoftwareDevelopment.Payroll
         }
 
         [Test]
-        public void TestPayCommissionedEmployeeOneSalesReceipt()
-        {
+        public void TestPayCommissionedEmployeeOneSalesReceipt() {
             const int empId = 29;
             var t = new AddCommissionedEmployee(empId, "Bob", "Home", 2500.00, 3.2);
             t.Execute();
@@ -591,8 +559,7 @@ namespace AgileSoftwareDevelopment.Payroll
         }
 
         [Test]
-        public void TestPayCommissionedEmployeeTwoSalesReceipts()
-        {
+        public void TestPayCommissionedEmployeeTwoSalesReceipts() {
             const int empId = 30;
             var t = new AddCommissionedEmployee(empId, "Bob", "Home", 2500.00, 3.2);
             t.Execute();
@@ -614,8 +581,7 @@ namespace AgileSoftwareDevelopment.Payroll
         }
 
         [Test]
-        public void TestPayCommissionedEmployeeOnWrongDate()
-        {
+        public void TestPayCommissionedEmployeeOnWrongDate() {
             const int empId = 31;
             var t = new AddCommissionedEmployee(empId, "Bob", "Home", 2500.00, 3.2);
             t.Execute();

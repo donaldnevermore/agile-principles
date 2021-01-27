@@ -1,7 +1,5 @@
-﻿namespace AgileSoftwareDevelopment.CoffeeMaker.Domain
-{
-    public enum BoilerState
-    {
+﻿namespace AgileSoftwareDevelopment.CoffeeMaker.Domain {
+    public enum BoilerState {
         On,
         Off
     }

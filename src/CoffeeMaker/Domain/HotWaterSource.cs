@@ -1,31 +1,25 @@
-namespace AgileSoftwareDevelopment.CoffeeMaker.Domain
-{
-    public abstract class HotWaterSource
-    {
+namespace AgileSoftwareDevelopment.CoffeeMaker.Domain {
+    public abstract class HotWaterSource {
         protected bool isBrewing = false;
 
         private UserInterface ui;
         private ContainmentVessel cv;
 
-        public void Init(UserInterface ui, ContainmentVessel cv)
-        {
+        public void Init(UserInterface ui, ContainmentVessel cv) {
             this.ui = ui;
             this.cv = cv;
         }
 
-        public void Start()
-        {
+        public void Start() {
             isBrewing = true;
             StartBrewing();
         }
 
-        public void Done()
-        {
+        public void Done() {
             isBrewing = false;
         }
 
-        protected void DeclareDone()
-        {
+        protected void DeclareDone() {
             ui.Done();
             cv.Done();
             isBrewing = false;

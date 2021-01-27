@@ -1,24 +1,18 @@
-namespace AgileSoftwareDevelopment.Regulator
-{
-    public class Regulator
-    {
-        public void Regulate(Thermometer t, Heater h, double minTemp, double maxTemp)
-        {
-            while (true)
-            {
-                while (t.Read() > minTemp)
-                {
+namespace AgileSoftwareDevelopment.Regulator {
+    public class Regulator {
+        public void Regulate(Thermometer t, Heater h, double minTemp, double maxTemp) {
+            while (true) {
+                while (t.Read() > minTemp) {
                     Wait(1);
                 }
 
-                // Heat up.
+                // Heat up
                 h.Engage();
-                while (t.Read() < maxTemp)
-                {
+                while (t.Read() < maxTemp) {
                     Wait(1);
                 }
 
-                // Cold down.
+                // Cool down
                 h.Disengage();
             }
         }
@@ -26,8 +20,7 @@ namespace AgileSoftwareDevelopment.Regulator
         /// <summary>
         /// A stub.
         /// </summary>
-        private void Wait(int seconds)
-        {
+        private void Wait(int seconds) {
         }
     }
 }
