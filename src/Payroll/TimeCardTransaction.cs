@@ -20,13 +20,13 @@ namespace AgileSoftwareDevelopment.Payroll {
                 throw new InvalidOperationException("No such employee");
             }
 
-            var hc = e.Classification as HourlyClassification;
 
-            if (hc == null) {
+            if (e.Classification is HourlyClassification hc) {
+                hc.AddTimeCard(new TimeCard(date, hours));
+            }
+            else {
                 throw new InvalidOperationException("Tried to add time card to non-hourly employee");
             }
-
-            hc.AddTimeCard(new TimeCard(date, hours));
         }
     }
 }

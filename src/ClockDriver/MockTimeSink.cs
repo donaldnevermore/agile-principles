@@ -4,7 +4,7 @@
         public int Minutes { get; private set; }
         public int Seconds { get; private set; }
 
-        private TimeSource itsSource;
+        private readonly TimeSource itsSource;
 
         public MockTimeSink(TimeSource source) {
             itsSource = source;

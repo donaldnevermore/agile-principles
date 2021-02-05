@@ -32,7 +32,7 @@ namespace AgileSoftwareDevelopment.ClockDriver {
             AssertSinkEquals(sink2, 12, 13, 14);
         }
 
-        private void AssertSinkEquals(MockTimeSink sink, int hours, int mins, int secs) {
+        private static void AssertSinkEquals(MockTimeSink sink, int hours, int mins, int secs) {
             Assert.AreEqual(hours, sink.Hours);
             Assert.AreEqual(mins, sink.Minutes);
             Assert.AreEqual(secs, sink.Seconds);

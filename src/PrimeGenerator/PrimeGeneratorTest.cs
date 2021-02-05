@@ -29,13 +29,13 @@ namespace AgileSoftwareDevelopment.PrimeGenerator {
             }
         }
 
-        private void VerifyPrimeList(int[] list) {
+        private static void VerifyPrimeList(int[] list) {
             for (int i = 0; i < list.Length; i++) {
                 VerifyPrime(list[i]);
             }
         }
 
-        private void VerifyPrime(int n) {
+        private static void VerifyPrime(int n) {
             for (int factor = 2; factor < n; factor++) {
                 Assert.IsTrue(n % factor != 0);
             }

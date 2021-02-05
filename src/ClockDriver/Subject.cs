@@ -2,7 +2,7 @@
 
 namespace AgileSoftwareDevelopment.ClockDriver {
     public class Subject {
-        private IList<Observer> itsObservers = new List<Observer>();
+        private readonly IList<Observer> itsObservers = new List<Observer>();
 
         public void NotifyObservers() {
             foreach (var observer in itsObservers) {

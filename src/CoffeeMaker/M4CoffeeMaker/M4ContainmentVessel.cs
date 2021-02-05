@@ -2,7 +2,7 @@ using AgileSoftwareDevelopment.CoffeeMaker.Domain;
 
 namespace AgileSoftwareDevelopment.CoffeeMaker.M4CoffeeMaker {
     public class M4ContainmentVessel : ContainmentVessel, Pollable {
-        private CoffeeMakerApi api;
+        private readonly CoffeeMakerApi api;
         private WarmerPlateStatus lastPotStatus;
 
         public M4ContainmentVessel(CoffeeMakerApi api) {

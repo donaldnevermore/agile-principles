@@ -7,7 +7,7 @@ namespace AgileSoftwareDevelopment.Payroll.Classifications {
         public double Salary { get; }
         public double CommissionRate { get; }
 
-        private Dictionary<DateTime, SalesReceipt> salesReceipts = new Dictionary<DateTime, SalesReceipt>();
+        private readonly Dictionary<DateTime, SalesReceipt> salesReceipts = new();
 
         public CommissionedClassification(double salary, double commissionRate) {
             Salary = salary;
@@ -38,7 +38,7 @@ namespace AgileSoftwareDevelopment.Payroll.Classifications {
             return totalPay;
         }
 
-        private bool IsSalaryInPayPeriod(Paycheck paycheck) {
+        private static bool IsSalaryInPayPeriod(Paycheck paycheck) {
             var date = paycheck.PayDate;
             if (DateUtil.IsLastDayOfMonth(date)) {
                 return true;
@@ -52,7 +52,7 @@ namespace AgileSoftwareDevelopment.Payroll.Classifications {
             return false;
         }
 
-        private bool InInPayPeriod(SalesReceipt salesReceipt, Paycheck paycheck) {
+        private static bool InInPayPeriod(SalesReceipt salesReceipt, Paycheck paycheck) {
             return DateUtil.IsInPayPeriod(salesReceipt.Date, paycheck);
         }
     }

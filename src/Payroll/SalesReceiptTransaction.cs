@@ -20,13 +20,13 @@ namespace AgileSoftwareDevelopment.Payroll {
                 throw new InvalidOperationException("No such employee");
             }
 
-            var cc = e.Classification as CommissionedClassification;
 
-            if (cc == null) {
+            if (e.Classification is CommissionedClassification cc) {
+                cc.AddSalesReceipt(new SalesReceipt(date, amount));
+            }
+            else {
                 throw new InvalidOperationException("Tried to add sales receipt to non-commissioned employee");
             }
-
-            cc.AddSalesReceipt(new SalesReceipt(date, amount));
         }
     }
 }

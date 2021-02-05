@@ -7,7 +7,7 @@ namespace AgileSoftwareDevelopment.PrimeGenerator {
 
         public static int[] GeneratePrimeNumbers(int maxValue) {
             if (maxValue < 2) {
-                return new int[0];
+                return Array.Empty<int>();
             }
             else {
                 UncrossIntegersUpTo(maxValue);

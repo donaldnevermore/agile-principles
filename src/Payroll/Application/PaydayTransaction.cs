@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace AgileSoftwareDevelopment.Payroll.Application {
     public class PaydayTransaction : Transaction {
         private readonly DateTime payDate;
-        private readonly Dictionary<int, Paycheck> paychecks = new Dictionary<int, Paycheck>();
+        private readonly Dictionary<int, Paycheck> paychecks = new();
 
         public PaydayTransaction(DateTime payDate) {
             this.payDate = payDate;

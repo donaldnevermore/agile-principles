@@ -4,8 +4,8 @@ using AgileSoftwareDevelopment.Payroll.Domain;
 
 namespace AgileSoftwareDevelopment.Payroll {
     public class PayrollDatabase {
-        private static readonly Dictionary<int, Employee> employees = new Dictionary<int, Employee>();
-        private static readonly Dictionary<int, Employee> unionMembers = new Dictionary<int, Employee>();
+        private static readonly Dictionary<int, Employee> employees = new();
+        private static readonly Dictionary<int, Employee> unionMembers = new();
 
         public static void AddEmployee(int id, Employee employee) {
             employees.Add(id, employee);

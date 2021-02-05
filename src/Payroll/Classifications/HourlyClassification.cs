@@ -5,7 +5,7 @@ using AgileSoftwareDevelopment.Payroll.Domain;
 namespace AgileSoftwareDevelopment.Payroll.Classifications {
     public class HourlyClassification : PayrollClassification {
         public double HourlyRate { get; }
-        private readonly Dictionary<DateTime, TimeCard> timeCards = new Dictionary<DateTime, TimeCard>();
+        private readonly Dictionary<DateTime, TimeCard> timeCards = new();
 
         public HourlyClassification(double hourlyRate) {
             HourlyRate = hourlyRate;
@@ -30,7 +30,7 @@ namespace AgileSoftwareDevelopment.Payroll.Classifications {
             return totalPay;
         }
 
-        private bool IsInPayPeriod(TimeCard card, Paycheck paycheck) {
+        private static bool IsInPayPeriod(TimeCard card, Paycheck paycheck) {
             return DateUtil.IsInPayPeriod(card.Date, paycheck);
         }
 

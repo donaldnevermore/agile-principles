@@ -2,7 +2,7 @@ using AgileSoftwareDevelopment.CoffeeMaker.Domain;
 
 namespace AgileSoftwareDevelopment.CoffeeMaker.M4CoffeeMaker {
     public class M4HotWaterSource : HotWaterSource, Pollable {
-        private CoffeeMakerApi api;
+        private readonly CoffeeMakerApi api;
 
         public M4HotWaterSource(CoffeeMakerApi api) {
             this.api = api;

@@ -7,7 +7,7 @@ namespace AgileSoftwareDevelopment.Payroll.Affiliations {
         public int MemberId { get; }
         public double Dues { get; }
 
-        private Dictionary<DateTime, ServiceCharge> serviceCharges = new Dictionary<DateTime, ServiceCharge>();
+        private readonly Dictionary<DateTime, ServiceCharge> serviceCharges = new();
 
         public UnionAffiliation() {
         }
@@ -38,7 +38,7 @@ namespace AgileSoftwareDevelopment.Payroll.Affiliations {
             return totalDues;
         }
 
-        private int NumberOfFridaysInPayPeriod(DateTime payPeriodStart, DateTime payPeriodEnd) {
+        private static int NumberOfFridaysInPayPeriod(DateTime payPeriodStart, DateTime payPeriodEnd) {
             var fridays = 0;
             for (var day = payPeriodStart; day <= payPeriodEnd; day = day.AddDays(1)) {
                 if (day.DayOfWeek == DayOfWeek.Friday) {

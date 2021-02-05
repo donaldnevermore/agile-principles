@@ -335,7 +335,7 @@ namespace AgileSoftwareDevelopment.Payroll {
             ValidateHourlyPaycheck(pt, empId, payDate, 0.0);
         }
 
-        private void ValidateHourlyPaycheck(PaydayTransaction pt, int empId, DateTime payDate, double pay) {
+        private static void ValidateHourlyPaycheck(PaydayTransaction pt, int empId, DateTime payDate, double pay) {
             var pc = pt.GetPaycheck(empId);
             Assert.IsNotNull(pc);
 

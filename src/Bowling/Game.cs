@@ -4,7 +4,7 @@ namespace AgileSoftwareDevelopment.Bowling {
 
         private int currentFrame = 0;
         private bool isFirstThrow = true;
-        private readonly Scorer scorer = new Scorer();
+        private readonly Scorer scorer = new();
 
 
         public int ScoreForFrame(int theFrame) => scorer.ScoreForFrame(theFrame);
