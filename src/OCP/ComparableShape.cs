@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace AgileSoftwareDevelopment.ComparableShape {
+namespace AgileSoftwareDevelopment.OCP.ComparableShape {
     public interface Shape : IComparable<Shape> {
         void Draw();
     }

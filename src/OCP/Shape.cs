@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace AgileSoftwareDevelopment.Shape {
+namespace AgileSoftwareDevelopment.OCP.Shape {
     public interface Shape {
         void Draw();
     }

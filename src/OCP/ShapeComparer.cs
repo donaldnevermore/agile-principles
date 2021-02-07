@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace AgileSoftwareDevelopment.ShapeComparer {
+namespace AgileSoftwareDevelopment.OCP.ShapeComparer {
     public interface Shape {
         void Draw();
     }
