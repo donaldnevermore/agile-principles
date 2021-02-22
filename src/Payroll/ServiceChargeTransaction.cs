@@ -15,7 +15,7 @@ namespace AgileSoftwareDevelopment.Payroll {
 
         public void Execute() {
             var e = PayrollDatabase.GetUnionMember(memberId);
-            if (e == null) {
+            if (e is null) {
                 throw new InvalidOperationException("No such union member.");
             }
 
@@ -24,7 +24,7 @@ namespace AgileSoftwareDevelopment.Payroll {
                 ua = e.Affiliation as UnionAffiliation;
             }
 
-            if (ua == null) {
+            if (ua is null) {
                 throw new InvalidOperationException(
                     "Tries to add service charge to union member without a union affiliation.");
             }

@@ -1,11 +1,11 @@
 # IDEs
-.vscode
-.idea
-.vs
+.vscode/
+.idea/
+.vs/
 
 # Compiled files
-bin
-obj
+bin/
+obj/
 
 # User-specific files
 *.user

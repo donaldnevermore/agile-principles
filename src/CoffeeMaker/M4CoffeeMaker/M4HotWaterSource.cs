@@ -9,7 +9,7 @@ namespace AgileSoftwareDevelopment.CoffeeMaker.M4CoffeeMaker {
         }
 
         public override bool IsReady() {
-            BoilerStatus boilerStatus = api.GetBoilerStatus();
+            var boilerStatus = api.GetBoilerStatus();
             return boilerStatus == BoilerStatus.NotEmpty;
         }
 
@@ -19,7 +19,7 @@ namespace AgileSoftwareDevelopment.CoffeeMaker.M4CoffeeMaker {
         }
 
         public void Poll() {
-            BoilerStatus boilerStatus = api.GetBoilerStatus();
+            var boilerStatus = api.GetBoilerStatus();
 
             if (isBrewing) {
                 if (boilerStatus == BoilerStatus.Empty) {

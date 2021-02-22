@@ -1,5 +1,3 @@
-using AgileSoftwareDevelopment.CoffeeMaker.Domain;
-
 namespace AgileSoftwareDevelopment.CoffeeMaker.M4CoffeeMaker {
     public class M4CoffeeMaker {
         public static void Start() {
@@ -12,7 +10,7 @@ namespace AgileSoftwareDevelopment.CoffeeMaker.M4CoffeeMaker {
             hws.Init(ui, cv);
             cv.Init(ui, hws);
 
-            while (true) {
+            for (; ; ) {
                 ui.Poll();
                 hws.Poll();
                 cv.Poll();

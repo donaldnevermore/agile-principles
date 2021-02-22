@@ -11,12 +11,12 @@ namespace AgileSoftwareDevelopment.CoffeeMaker.M4CoffeeMaker {
         }
 
         public override bool IsReady() {
-            WarmerPlateStatus plateStatus = api.GetWarmerPlateStatus();
+            var plateStatus = api.GetWarmerPlateStatus();
             return plateStatus == WarmerPlateStatus.PotEmpty;
         }
 
         public void Poll() {
-            WarmerPlateStatus potStatus = api.GetWarmerPlateStatus();
+            var potStatus = api.GetWarmerPlateStatus();
 
             if (potStatus != lastPotStatus) {
                 if (isBrewing) {
@@ -40,7 +40,7 @@ namespace AgileSoftwareDevelopment.CoffeeMaker.M4CoffeeMaker {
                 api.SetWarmerState(WarmerState.Off);
             }
             else {
-                // potStatus == POT_EMPTY
+                // potStatus == PotEmpty
                 ContainerAvailable();
                 api.SetWarmerState(WarmerState.Off);
             }
@@ -54,7 +54,7 @@ namespace AgileSoftwareDevelopment.CoffeeMaker.M4CoffeeMaker {
                 api.SetWarmerState(WarmerState.Off);
             }
             else {
-                // potStatus == POT_EMPTY
+                // potStatus == PotEmpty
                 api.SetWarmerState(WarmerState.Off);
                 DeclareComplete();
             }

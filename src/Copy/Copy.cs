@@ -10,7 +10,7 @@ namespace AgileSoftwareDevelopment.Copy {
     }
 
     public class Printer {
-        public static void Write(int _) { }
+        public static void Write(int c) { }
     }
 
     public class KeyboardReader : Reader {

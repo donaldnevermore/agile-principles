@@ -9,7 +9,7 @@ namespace AgileSoftwareDevelopment.CoffeeMaker.M4CoffeeMaker {
         }
 
         public void Poll() {
-            BrewButtonStatus buttonStatus = api.GetBrewButtonStatus();
+            var buttonStatus = api.GetBrewButtonStatus();
 
             if (buttonStatus == BrewButtonStatus.Pushed) {
                 StartBrewing();

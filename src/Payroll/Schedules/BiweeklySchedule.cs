@@ -11,7 +11,7 @@ namespace AgileSoftwareDevelopment.Payroll.Schedules {
             }
 
             // First pay or every other week
-            if (previousPayDate == null || (payDate - previousPayDate == TimeSpan.FromDays(14))) {
+            if (previousPayDate is null || (payDate - previousPayDate == TimeSpan.FromDays(14))) {
                 previousPayDate = payDate;
                 return true;
             }

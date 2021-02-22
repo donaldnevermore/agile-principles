@@ -1,14 +1,14 @@
 namespace AgileSoftwareDevelopment.LSP {
     public abstract class LinearObject {
-        private Point P1 { get; }
-        private Point P2 { get; }
+        private Point p1;
+        private Point p2;
 
         public double Slope { get; }
         public double YIntercept { get; }
 
         public LinearObject(Point p1, Point p2) {
-            P1 = p1;
-            P2 = p2;
+            this.p1 = p1;
+            this.p2 = p2;
         }
 
         public virtual bool IsOn(Point p) {

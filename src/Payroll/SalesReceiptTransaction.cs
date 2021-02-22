@@ -16,7 +16,7 @@ namespace AgileSoftwareDevelopment.Payroll {
         public void Execute() {
             var e = PayrollDatabase.GetEmployee(empId);
 
-            if (e == null) {
+            if (e is null) {
                 throw new InvalidOperationException("No such employee");
             }
 
