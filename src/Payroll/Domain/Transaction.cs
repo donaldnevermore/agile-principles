@@ -1,4 +1,4 @@
-﻿namespace AgileSoftwareDevelopment.Payroll {
+﻿namespace AgileSoftwareDevelopment.Payroll.Domain {
     public interface Transaction {
         void Execute();
     }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using AgileSoftwareDevelopment.Payroll.Domain;
 
 namespace AgileSoftwareDevelopment.Payroll.Application {
     public class PaydayTransaction : Transaction {

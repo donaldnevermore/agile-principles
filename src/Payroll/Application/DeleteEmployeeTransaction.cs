@@ -1,4 +1,6 @@
-﻿namespace AgileSoftwareDevelopment.Payroll.Application {
+﻿using AgileSoftwareDevelopment.Payroll.Domain;
+
+namespace AgileSoftwareDevelopment.Payroll.Application {
     public class DeleteEmployeeTransaction : Transaction {
         private readonly int id;
 

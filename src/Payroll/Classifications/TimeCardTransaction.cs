@@ -1,7 +1,7 @@
 ﻿using System;
-using AgileSoftwareDevelopment.Payroll.Classifications;
+using AgileSoftwareDevelopment.Payroll.Domain;
 
-namespace AgileSoftwareDevelopment.Payroll {
+namespace AgileSoftwareDevelopment.Payroll.Classifications {
     public class TimeCardTransaction : Transaction {
         private readonly DateTime date;
         private readonly double hours;
