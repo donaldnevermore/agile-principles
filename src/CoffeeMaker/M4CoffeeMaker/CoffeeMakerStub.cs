@@ -1,7 +1,7 @@
 using AgileSoftwareDevelopment.CoffeeMaker.Domain;
 
 namespace AgileSoftwareDevelopment.CoffeeMaker.M4CoffeeMaker {
-    internal class CoffeeMakerStub : CoffeeMakerApi {
+    internal class CoffeeMakerStub : CoffeeMakerAPI {
         public bool ButtonPressed { get; set; } = false;
         public bool LightOn { get; set; } = false;
         public bool BoilerOn { get; set; } = false;

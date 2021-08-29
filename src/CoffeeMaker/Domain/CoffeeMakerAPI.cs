@@ -1,5 +1,5 @@
 namespace AgileSoftwareDevelopment.CoffeeMaker.Domain {
-    public interface CoffeeMakerApi {
+    public interface CoffeeMakerAPI {
         WarmerPlateStatus GetWarmerPlateStatus();
 
         BoilerStatus GetBoilerStatus();
