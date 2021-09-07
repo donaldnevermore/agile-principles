@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
 
-namespace AgileSoftwareDevelopment.ClockDriver {
+namespace AgileSoftwareDevelopment.Observer {
     [TestFixture]
     public class ObserverTest {
         private MockTimeSource source;

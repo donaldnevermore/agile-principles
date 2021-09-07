@@ -1,4 +1,4 @@
-﻿namespace AgileSoftwareDevelopment.ClockDriver {
+﻿namespace AgileSoftwareDevelopment.Observer {
     public class MockTimeSink : Observer {
         public int Hours { get; private set; }
         public int Minutes { get; private set; }

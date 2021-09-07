@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace AgileSoftwareDevelopment.ClockDriver {
+namespace AgileSoftwareDevelopment.Observer {
     public class Subject {
         private readonly IList<Observer> itsObservers = new List<Observer>();
 

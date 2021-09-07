@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace AgileSoftwareDevelopment.ClockDriver {
+﻿namespace AgileSoftwareDevelopment.Observer {
     public class MockTimeSource : Subject, TimeSource {
         public int Hours { get; private set; }
         public int Minutes { get; private set; }
