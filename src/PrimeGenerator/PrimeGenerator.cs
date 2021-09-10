@@ -19,7 +19,7 @@ namespace AgileSoftwareDevelopment.PrimeGenerator {
 
         private static void UncrossIntegersUpTo(int maxValue) {
             crossedOut = new bool[maxValue + 1];
-            for (int i = 2; i < crossedOut.Length; i++) {
+            for (var i = 2; i < crossedOut.Length; i++) {
                 crossedOut[i] = false;
             }
         }
@@ -36,8 +36,8 @@ namespace AgileSoftwareDevelopment.PrimeGenerator {
         }
 
         private static int NumberOfUncrossedIntegers() {
-            int count = 0;
-            for (int i = 2; i < crossedOut.Length; i++) {
+            var count = 0;
+            for (var i = 2; i < crossedOut.Length; i++) {
                 if (NotCrossed(i)) {
                     count++;
                 }
@@ -51,9 +51,9 @@ namespace AgileSoftwareDevelopment.PrimeGenerator {
         }
 
         private static void CrossOutMultiples() {
-            int limit = DetermineIterationLimit();
+            var limit = DetermineIterationLimit();
 
-            for (int i = 2; i <= limit; i++) {
+            for (var i = 2; i <= limit; i++) {
                 if (NotCrossed(i)) {
                     CrossOutMultiplesOf(i);
                 }
@@ -61,13 +61,13 @@ namespace AgileSoftwareDevelopment.PrimeGenerator {
         }
 
         private static void CrossOutMultiplesOf(int i) {
-            for (int multiple = 2 * i; multiple < crossedOut.Length; multiple += i) {
+            for (var multiple = 2 * i; multiple < crossedOut.Length; multiple += i) {
                 crossedOut[multiple] = true;
             }
         }
 
         private static int DetermineIterationLimit() {
-            double iterationLimit = Math.Sqrt(crossedOut.Length);
+            var iterationLimit = Math.Sqrt(crossedOut.Length);
             return (int)iterationLimit;
         }
     }

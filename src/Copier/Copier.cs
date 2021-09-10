@@ -1,4 +1,4 @@
-namespace AgileSoftwareDevelopment.Copy {
+namespace AgileSoftwareDevelopment.Copier {
     public interface Reader {
         int Read();
     }
@@ -10,7 +10,8 @@ namespace AgileSoftwareDevelopment.Copy {
     }
 
     public class Printer {
-        public static void Write(int c) { }
+        public static void Write(int c) {
+        }
     }
 
     public class KeyboardReader : Reader {
