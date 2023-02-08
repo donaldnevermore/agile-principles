@@ -1,17 +1,17 @@
-namespace AgileSoftwareDevelopment.CoffeeMaker.Domain {
-    public interface CoffeeMakerAPI {
-        WarmerPlateStatus GetWarmerPlateStatus();
+namespace AgileSoftwareDevelopment.CoffeeMaker.Domain;
 
-        BoilerStatus GetBoilerStatus();
+public interface CoffeeMakerApi {
+    WarmerPlateStatus GetWarmerPlateStatus();
 
-        BrewButtonStatus GetBrewButtonStatus();
+    BoilerStatus GetBoilerStatus();
 
-        void SetBoilerState(BoilerState state);
+    BrewButtonStatus GetBrewButtonStatus();
 
-        void SetWarmerState(WarmerState state);
+    void SetBoilerState(BoilerState state);
 
-        void SetIndicatorState(IndicatorState state);
+    void SetWarmerState(WarmerState state);
 
-        void SetReliefValveState(ReliefValveState state);
-    }
+    void SetIndicatorState(IndicatorState state);
+
+    void SetReliefValveState(ReliefValveState state);
 }

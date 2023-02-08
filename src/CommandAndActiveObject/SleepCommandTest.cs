@@ -22,9 +22,9 @@ namespace AgileSoftwareDevelopment.CommandAndActiveObject {
             e.Run();
             var stop = DateTime.Now;
             var sleepTime = (stop - start).TotalMilliseconds;
-            Assert.IsTrue(sleepTime >= 1000, $"SleepTime {sleepTime} expected > 1000");
-            Assert.IsTrue(sleepTime <= 1100, $"SleepTime {sleepTime} expected < 1100");
-            Assert.IsTrue(wakeUp.Executed, "Command executed");
+            Assert.IsTrue(sleepTime >= 1000, $"SleepTime {sleepTime} expected > 1000.");
+            Assert.IsTrue(sleepTime <= 1100, $"SleepTime {sleepTime} expected < 1100.");
+            Assert.IsTrue(wakeUp.Executed, "Command executed.");
         }
     }
 }

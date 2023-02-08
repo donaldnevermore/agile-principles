@@ -2,9 +2,9 @@ using AgileSoftwareDevelopment.CoffeeMaker.Domain;
 
 namespace AgileSoftwareDevelopment.CoffeeMaker.M4CoffeeMaker {
     public class M4UserInterface : UserInterface, Pollable {
-        private readonly CoffeeMakerAPI api;
+        private readonly CoffeeMakerApi api;
 
-        public M4UserInterface(CoffeeMakerAPI api) {
+        public M4UserInterface(CoffeeMakerApi api) {
             this.api = api;
         }
 

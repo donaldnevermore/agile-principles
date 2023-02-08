@@ -19,7 +19,7 @@ namespace AgileSoftwareDevelopment.Payroll.Affiliations {
                 throw new InvalidOperationException("No such union member.");
             }
 
-            UnionAffiliation ua = null;
+            UnionAffiliation? ua = null;
             if (e.Affiliation is UnionAffiliation) {
                 ua = e.Affiliation as UnionAffiliation;
             }

@@ -1,6 +1,5 @@
 namespace AgileSoftwareDevelopment.DIP {
     public class Regulator {
-
         public void Regulate(Thermometer t, Heater h, double minTemp, double maxTemp) {
             for (; ; ) {
                 while (t.Read() > minTemp) {
@@ -22,7 +21,6 @@ namespace AgileSoftwareDevelopment.DIP {
         /// <summary>
         /// A mock method.
         /// </summary>
-        private void Wait(int seconds) {
-        }
+        private void Wait(int seconds) { }
     }
 }
