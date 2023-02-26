@@ -1,5 +1,5 @@
-namespace AgileSoftwareDevelopment.CommandAndActiveObject {
-    public interface Command {
-        void Execute();
-    }
+namespace AgileSoftwareDevelopment.CommandAndActiveObject;
+
+public interface Command {
+    void Execute();
 }

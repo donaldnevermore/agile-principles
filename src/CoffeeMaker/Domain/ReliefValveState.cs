@@ -1,6 +1,6 @@
-﻿namespace AgileSoftwareDevelopment.CoffeeMaker.Domain {
-    public enum ReliefValveState {
-        Open,
-        Closed
-    }
+namespace AgileSoftwareDevelopment.CoffeeMaker.Domain;
+
+public enum ReliefValveState {
+    Open,
+    Closed
 }

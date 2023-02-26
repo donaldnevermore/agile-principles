@@ -15,11 +15,9 @@ public class M4CoffeeMakerApi : CoffeeMakerApi {
     public WarmerPlateStatus GetWarmerPlateStatus() {
         if (!PotPresent) {
             return WarmerPlateStatus.WarmerEmpty;
-        }
-        else if (PotNotEmpty) {
+        } else if (PotNotEmpty) {
             return WarmerPlateStatus.PotNotEmpty;
-        }
-        else {
+        } else {
             return WarmerPlateStatus.PotEmpty;
         }
     }
@@ -32,8 +30,7 @@ public class M4CoffeeMakerApi : CoffeeMakerApi {
         if (ButtonPressed) {
             ButtonPressed = false;
             return BrewButtonStatus.Pushed;
-        }
-        else {
+        } else {
             return BrewButtonStatus.NotPushed;
         }
     }

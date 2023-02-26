@@ -1,6 +1,6 @@
-﻿namespace AgileSoftwareDevelopment.CoffeeMaker.Domain {
-    public enum BrewButtonStatus {
-        Pushed,
-        NotPushed
-    }
+﻿namespace AgileSoftwareDevelopment.CoffeeMaker.Domain;
+
+public enum BrewButtonStatus {
+    Pushed,
+    NotPushed
 }

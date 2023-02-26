@@ -1,7 +1,7 @@
-﻿namespace AgileSoftwareDevelopment.CoffeeMaker.Domain {
-    public enum WarmerPlateStatus {
-        WarmerEmpty,
-        PotEmpty,
-        PotNotEmpty
-    }
+﻿namespace AgileSoftwareDevelopment.CoffeeMaker.Domain;
+
+public enum WarmerPlateStatus {
+    WarmerEmpty,
+    PotEmpty,
+    PotNotEmpty
 }

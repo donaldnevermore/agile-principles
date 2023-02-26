@@ -1,6 +1,6 @@
-﻿namespace AgileSoftwareDevelopment.CoffeeMaker.Domain {
-    public enum IndicatorState {
-        On,
-        Off
-    }
+﻿namespace AgileSoftwareDevelopment.CoffeeMaker.Domain;
+
+public enum IndicatorState {
+    On,
+    Off
 }

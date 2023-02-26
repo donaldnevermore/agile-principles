@@ -1,6 +1,6 @@
-﻿namespace AgileSoftwareDevelopment.CoffeeMaker.Domain {
-    public enum BoilerStatus {
-        Empty,
-        NotEmpty
-    }
+﻿namespace AgileSoftwareDevelopment.CoffeeMaker.Domain;
+
+public enum BoilerStatus {
+    Empty,
+    NotEmpty
 }

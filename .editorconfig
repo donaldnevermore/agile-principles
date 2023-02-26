@@ -12,6 +12,9 @@ insert_final_newline = true
 
 [*.cs]
 csharp_new_line_before_open_brace = none
+csharp_new_line_before_else = false
+csharp_new_line_before_catch = false
+csharp_new_line_before_finally = false
 csharp_indent_switch_labels = false
 
 dotnet_naming_symbols.interface.applicable_kinds = interface
@@ -24,3 +27,6 @@ dotnet_naming_rule.interface_naming.style = pascal
 dotnet_naming_rule.interface_naming.severity = suggestion
 
 dotnet_diagnostic.IDE1006.severity = suggestion
+
+[*.yml]
+indent_size = 2
