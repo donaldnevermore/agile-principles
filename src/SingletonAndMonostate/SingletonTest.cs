@@ -1,17 +1,17 @@
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace AgileSoftwareDevelopment.SingletonAndMonostate;
 
-[TestFixture]
+[TestClass]
 public class SingletonTest {
-    [Test]
+    [TestMethod]
     public void TestCreateSingleton() {
         var s = Singleton.Instance;
         var s2 = Singleton.Instance;
         Assert.AreSame(s, s2);
     }
 
-    [Test]
+    [TestMethod]
     public void TestNoPublicConstructors() {
         var singleton = typeof(Singleton);
         var ctors = singleton.GetConstructors();
@@ -22,6 +22,7 @@ public class SingletonTest {
                 break;
             }
         }
+
         Assert.IsFalse(hasPublicConstructor);
     }
 }

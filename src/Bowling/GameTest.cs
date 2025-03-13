@@ -1,24 +1,24 @@
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+
 namespace AgileSoftwareDevelopment.Bowling;
 
-using NUnit.Framework;
-
-[TestFixture]
+[TestClass]
 public class GameTest {
     private Game game;
 
-    [SetUp]
+    [TestInitialize]
     public void SetUp() {
         game = new Game();
     }
 
-    [Test]
+    [TestMethod]
     public void TestTwoThrowsNoMark() {
         game.Add(5);
         game.Add(4);
         Assert.AreEqual(9, game.Score);
     }
 
-    [Test]
+    [TestMethod]
     public void TestFourThrowsNoMark() {
         game.Add(5);
         game.Add(4);
@@ -29,7 +29,7 @@ public class GameTest {
         Assert.AreEqual(18, game.ScoreForFrame(2));
     }
 
-    [Test]
+    [TestMethod]
     public void TestSimpleSpare() {
         game.Add(3);
         game.Add(7);
@@ -37,7 +37,7 @@ public class GameTest {
         Assert.AreEqual(13, game.ScoreForFrame(1));
     }
 
-    [Test]
+    [TestMethod]
     public void TestSimpleFrameAfterSpare() {
         game.Add(3);
         game.Add(7);
@@ -48,7 +48,7 @@ public class GameTest {
         Assert.AreEqual(18, game.Score);
     }
 
-    [Test]
+    [TestMethod]
     public void TestSimpleStrike() {
         game.Add(10);
         game.Add(3);
@@ -57,7 +57,7 @@ public class GameTest {
         Assert.AreEqual(28, game.Score);
     }
 
-    [Test]
+    [TestMethod]
     public void TestPerfectGame() {
         for (int i = 0; i < 12; i++) {
             game.Add(10);
@@ -66,7 +66,7 @@ public class GameTest {
         Assert.AreEqual(300, game.Score);
     }
 
-    [Test]
+    [TestMethod]
     public void TestEndOfArray() {
         for (int i = 0; i < 9; i++) {
             game.Add(0);
@@ -79,7 +79,7 @@ public class GameTest {
         Assert.AreEqual(20, game.Score);
     }
 
-    [Test]
+    [TestMethod]
     public void TestSampleGame() {
         game.Add(1);
         game.Add(4);
@@ -103,7 +103,7 @@ public class GameTest {
         Assert.AreEqual(133, game.Score);
     }
 
-    [Test]
+    [TestMethod]
     public void TestHeartBreak() {
         for (int i = 0; i < 11; i++) {
             game.Add(10);
@@ -113,7 +113,7 @@ public class GameTest {
         Assert.AreEqual(299, game.Score);
     }
 
-    [Test]
+    [TestMethod]
     public void TestTenthFrameSpare() {
         for (int i = 0; i < 9; i++) {
             game.Add(10);

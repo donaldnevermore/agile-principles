@@ -1,15 +1,15 @@
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+
 namespace AgileSoftwareDevelopment.CoffeeMaker.M4CoffeeMaker;
 
-using NUnit.Framework;
-
-[TestFixture]
+[TestClass]
 public class M4CoffeeMakerTest {
     private CoffeeMakerStub api;
     private M4UserInterface ui;
     private M4HotWaterSource hws;
     private M4ContainmentVessel cv;
 
-    [SetUp]
+    [TestInitialize]
     public void SetUp() {
         api = new CoffeeMakerStub();
         ui = new M4UserInterface(api);
@@ -27,7 +27,7 @@ public class M4CoffeeMakerTest {
         cv.Poll();
     }
 
-    [Test]
+    [TestMethod]
     public void InitialConditions() {
         Poll();
         Assert.IsFalse(api.BoilerOn);
@@ -36,7 +36,7 @@ public class M4CoffeeMakerTest {
         Assert.IsTrue(api.ValveClosed);
     }
 
-    [Test]
+    [TestMethod]
     public void StartNoPot() {
         Poll();
         api.ButtonPressed = true;
@@ -48,7 +48,7 @@ public class M4CoffeeMakerTest {
         Assert.IsTrue(api.ValveClosed);
     }
 
-    [Test]
+    [TestMethod]
     public void StartNoWater() {
         Poll();
         api.ButtonPressed = true;
@@ -60,7 +60,7 @@ public class M4CoffeeMakerTest {
         Assert.IsTrue(api.ValveClosed);
     }
 
-    [Test]
+    [TestMethod]
     public void GoodStart() {
         NormalStart();
         Assert.IsTrue(api.BoilerOn);
@@ -76,7 +76,7 @@ public class M4CoffeeMakerTest {
         Poll();
     }
 
-    [Test]
+    [TestMethod]
     public void StartedPotNotEmpty() {
         NormalStart();
         api.PotNotEmpty = true;
@@ -87,7 +87,7 @@ public class M4CoffeeMakerTest {
         Assert.IsTrue(api.ValveClosed);
     }
 
-    [Test]
+    [TestMethod]
     public void PotRemovedAndReplacedWhileEmpty() {
         NormalStart();
         api.PotPresent = false;
@@ -106,7 +106,7 @@ public class M4CoffeeMakerTest {
         Assert.IsTrue(api.ValveClosed);
     }
 
-    [Test]
+    [TestMethod]
     public void PotRemovedWhileNotEmptyAndReplacedEmpty() {
         NormalFill();
         api.PotPresent = false;
@@ -131,7 +131,7 @@ public class M4CoffeeMakerTest {
         Poll();
     }
 
-    [Test]
+    [TestMethod]
     public void PotRemovedWhileNotEmptyAndReplacedNotEmpty() {
         NormalFill();
         api.PotPresent = false;
@@ -144,7 +144,7 @@ public class M4CoffeeMakerTest {
         Assert.IsTrue(api.ValveClosed);
     }
 
-    [Test]
+    [TestMethod]
     public void BoilerEmptyPotNotEmpty() {
         NormalBrew();
         Assert.IsFalse(api.BoilerOn);
@@ -159,7 +159,7 @@ public class M4CoffeeMakerTest {
         Poll();
     }
 
-    [Test]
+    [TestMethod]
     public void BoilerEmptiesWhilePotRemoved() {
         NormalFill();
         api.PotPresent = false;
@@ -179,7 +179,7 @@ public class M4CoffeeMakerTest {
         Assert.IsTrue(api.ValveClosed);
     }
 
-    [Test]
+    [TestMethod]
     public void EmptyPotReturnedAfter() {
         NormalBrew();
         api.PotNotEmpty = false;

@@ -1,8 +1,8 @@
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace AgileSoftwareDevelopment.CommandAndActiveObject;
 
-[TestFixture]
+[TestClass]
 public class SleepCommandTest {
     private class WakeUpCommand : Command {
         public bool Executed { get; set; } = false;
@@ -12,7 +12,7 @@ public class SleepCommandTest {
         }
     }
 
-    [Test]
+    [TestMethod]
     public void TestSleep() {
         var wakeUp = new WakeUpCommand();
         var e = new ActiveObjectEngine();

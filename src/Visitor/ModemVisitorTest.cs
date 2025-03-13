@@ -1,15 +1,15 @@
-﻿using NUnit.Framework;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace AgileSoftwareDevelopment.Visitor;
 
-[TestFixture]
+[TestClass]
 public class ModemVisitorTest {
     private UnixModemConfigurator v;
     private HayesModem h;
     private ZoomModem z;
     private ErnieModem e;
 
-    [SetUp]
+    [TestInitialize]
     public void SetUp() {
         v = new UnixModemConfigurator();
         h = new HayesModem();
@@ -17,19 +17,19 @@ public class ModemVisitorTest {
         e = new ErnieModem();
     }
 
-    [Test]
+    [TestMethod]
     public void HayesForUnix() {
         h.Accept(v);
         Assert.AreEqual("&s1=4&D=3", h.ConfigurationString);
     }
 
-    [Test]
+    [TestMethod]
     public void ZoomForUnix() {
         z.Accept(v);
         Assert.AreEqual(42, z.ConfigurationValue);
     }
 
-    [Test]
+    [TestMethod]
     public void ErnieForUnix() {
         e.Accept(v);
         Assert.AreEqual("C is too slow", e.InternalPattern);

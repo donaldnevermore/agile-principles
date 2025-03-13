@@ -1,44 +1,44 @@
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace AgileSoftwareDevelopment.PrimeGenerator {
-    [TestFixture]
-    public class PrimeGeneratorTest {
-        [Test]
-        public void TestPrimes() {
-            var nullArray = PrimeGenerator.GeneratePrimeNumbers(0);
-            Assert.AreEqual(0, nullArray.Length);
+namespace AgileSoftwareDevelopment.PrimeGenerator;
 
-            var minArray = PrimeGenerator.GeneratePrimeNumbers(2);
-            Assert.AreEqual(1, minArray.Length);
-            Assert.AreEqual(2, minArray[0]);
+[TestClass]
+public class PrimeGeneratorTest {
+    [TestMethod]
+    public void TestPrimes() {
+        var nullArray = PrimeGenerator.GeneratePrimeNumbers(0);
+        Assert.AreEqual(0, nullArray.Length);
 
-            var threeArr = PrimeGenerator.GeneratePrimeNumbers(3);
-            Assert.AreEqual(2, threeArr.Length);
-            Assert.AreEqual(2, threeArr[0]);
-            Assert.AreEqual(3, threeArr[1]);
+        var minArray = PrimeGenerator.GeneratePrimeNumbers(2);
+        Assert.AreEqual(1, minArray.Length);
+        Assert.AreEqual(2, minArray[0]);
 
-            var centArr = PrimeGenerator.GeneratePrimeNumbers(100);
-            Assert.AreEqual(25, centArr.Length);
-            Assert.AreEqual(97, centArr[24]);
+        var threeArr = PrimeGenerator.GeneratePrimeNumbers(3);
+        Assert.AreEqual(2, threeArr.Length);
+        Assert.AreEqual(2, threeArr[0]);
+        Assert.AreEqual(3, threeArr[1]);
+
+        var centArr = PrimeGenerator.GeneratePrimeNumbers(100);
+        Assert.AreEqual(25, centArr.Length);
+        Assert.AreEqual(97, centArr[24]);
+    }
+
+    [TestMethod]
+    public void TestExhaustive() {
+        for (var i = 2; i < 500; i++) {
+            VerifyPrimeList(PrimeGenerator.GeneratePrimeNumbers(i));
         }
+    }
 
-        [Test]
-        public void TestExhaustive() {
-            for (var i = 2; i < 500; i++) {
-                VerifyPrimeList(PrimeGenerator.GeneratePrimeNumbers(i));
-            }
+    private static void VerifyPrimeList(int[] list) {
+        for (var i = 0; i < list.Length; i++) {
+            VerifyPrime(list[i]);
         }
+    }
 
-        private static void VerifyPrimeList(int[] list) {
-            for (var i = 0; i < list.Length; i++) {
-                VerifyPrime(list[i]);
-            }
-        }
-
-        private static void VerifyPrime(int n) {
-            for (var factor = 2; factor < n; factor++) {
-                Assert.IsTrue(n % factor != 0);
-            }
+    private static void VerifyPrime(int n) {
+        for (var factor = 2; factor < n; factor++) {
+            Assert.IsTrue(n % factor != 0);
         }
     }
 }

@@ -1,23 +1,23 @@
-﻿namespace AgileSoftwareDevelopment.SingletonAndMonostate;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-using NUnit.Framework;
+namespace AgileSoftwareDevelopment.SingletonAndMonostate;
 
-[TestFixture]
+[TestClass]
 public class TurnstileTest {
-    [SetUp]
+    [TestInitialize]
     public void SetUp() {
         var t = new Turnstile();
         t.Reset();
     }
 
-    [Test]
+    [TestMethod]
     public void TestInit() {
         var t = new Turnstile();
         Assert.IsTrue(t.IsLocked);
         Assert.IsFalse(t.IsAlarming);
     }
 
-    [Test]
+    [TestMethod]
     public void TestCoin() {
         var t = new Turnstile();
         t.Coin();
@@ -27,7 +27,7 @@ public class TurnstileTest {
         Assert.AreEqual(1, t1.Coins);
     }
 
-    [Test]
+    [TestMethod]
     public void TestCoinAndPass() {
         var t = new Turnstile();
         t.Coin();
@@ -39,7 +39,7 @@ public class TurnstileTest {
         Assert.AreEqual(1, t1.Coins, "coins");
     }
 
-    [Test]
+    [TestMethod]
     public void TestTwoCoins() {
         var t = new Turnstile();
         t.Coin();
@@ -52,7 +52,7 @@ public class TurnstileTest {
         Assert.IsFalse(t1.IsAlarming);
     }
 
-    [Test]
+    [TestMethod]
     public void TestPass() {
         var t = new Turnstile();
         t.Pass();
@@ -62,7 +62,7 @@ public class TurnstileTest {
         Assert.IsTrue(t1.IsLocked, "locked");
     }
 
-    [Test]
+    [TestMethod]
     public void TestCancelAlarm() {
         var t = new Turnstile();
         t.Pass();
@@ -75,7 +75,7 @@ public class TurnstileTest {
         Assert.AreEqual(0, t1.Refunds, "refunds");
     }
 
-    [Test]
+    [TestMethod]
     public void TestTwoOperations() {
         var t = new Turnstile();
         t.Coin();
