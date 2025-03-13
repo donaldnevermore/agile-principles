@@ -1,6 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace AgileSoftwareDevelopment.SingletonAndMonostate;
+namespace AgilePrinciples.SingletonAndMonostate;
 
 [TestClass]
 public class SingletonTest {

@@ -1,4 +1,4 @@
-namespace AgileSoftwareDevelopment.UML {
+namespace AgilePrinciples.UML {
     public class BubbleSorter {
         public static int Operations { get; set; }
 

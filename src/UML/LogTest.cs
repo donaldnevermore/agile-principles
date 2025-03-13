@@ -1,6 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace AgileSoftwareDevelopment.UML;
+namespace AgilePrinciples.UML;
 
 [TestClass]
 public class LogTest {

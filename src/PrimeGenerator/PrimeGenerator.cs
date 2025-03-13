@@ -1,6 +1,6 @@
 using System;
 
-namespace AgileSoftwareDevelopment.PrimeGenerator {
+namespace AgilePrinciples.PrimeGenerator {
     public class PrimeGenerator {
         private static bool[] crossedOut;
         private static int[] result;

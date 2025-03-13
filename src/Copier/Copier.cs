@@ -1,4 +1,4 @@
-namespace AgileSoftwareDevelopment.Copier;
+namespace AgilePrinciples.Copier;
 
 public interface Reader {
     int Read();

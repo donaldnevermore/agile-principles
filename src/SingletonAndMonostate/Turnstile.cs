@@ -1,4 +1,4 @@
-﻿namespace AgileSoftwareDevelopment.SingletonAndMonostate;
+﻿namespace AgilePrinciples.SingletonAndMonostate;
 
 public class Turnstile {
     private static bool isLocked = true;

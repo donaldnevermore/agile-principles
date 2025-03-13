@@ -1,6 +1,6 @@
-﻿using AgileSoftwareDevelopment.Payroll.Domain;
+﻿using AgilePrinciples.Payroll.Domain;
 
-namespace AgileSoftwareDevelopment.Payroll.Classifications;
+namespace AgilePrinciples.Payroll.Classifications;
 
 public class HourlyClassification : PayrollClassification {
     public double HourlyRate { get; }

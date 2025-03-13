@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace AgileSoftwareDevelopment.Observer;
+namespace AgilePrinciples.Observer;
 
 [TestClass]
 public class ObserverTest {

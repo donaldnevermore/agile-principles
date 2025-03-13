@@ -1,6 +1,8 @@
-namespace AgileSoftwareDevelopment.CoffeeMaker.M4CoffeeMaker;
+using AgilePrinciples.CoffeeMaker.Domain;
 
-using AgileSoftwareDevelopment.CoffeeMaker.Domain;
+namespace AgilePrinciples.CoffeeMaker.M4CoffeeMaker;
+
+using AgilePrinciples.CoffeeMaker.Domain;
 
 internal class CoffeeMakerStub : CoffeeMakerApi {
     public bool ButtonPressed { get; set; } = false;

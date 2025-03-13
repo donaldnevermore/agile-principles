@@ -1,4 +1,4 @@
-namespace AgileSoftwareDevelopment.CommandAndActiveObject;
+namespace AgilePrinciples.CommandAndActiveObject;
 
 public class SleepCommand : Command {
     private readonly Command wakeUpCommand = null;

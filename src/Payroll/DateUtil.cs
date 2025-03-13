@@ -1,4 +1,4 @@
-namespace AgileSoftwareDevelopment.Payroll;
+namespace AgilePrinciples.Payroll;
 
 public class DateUtil {
   /// <summary>

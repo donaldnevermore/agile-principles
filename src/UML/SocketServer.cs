@@ -1,7 +1,7 @@
 using System.Net;
 using System.Net.Sockets;
 
-namespace AgileSoftwareDevelopment.UML;
+namespace AgilePrinciples.UML;
 
 public interface SocketService {
     void Serve(Socket s);

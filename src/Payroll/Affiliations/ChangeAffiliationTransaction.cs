@@ -1,6 +1,6 @@
-﻿using AgileSoftwareDevelopment.Payroll.Domain;
+﻿using AgilePrinciples.Payroll.Domain;
 
-namespace AgileSoftwareDevelopment.Payroll.Affiliations {
+namespace AgilePrinciples.Payroll.Affiliations {
     public abstract class ChangeAffiliationTransaction : ChangeEmployeeTransaction {
         public ChangeAffiliationTransaction(int empId) : base(empId) {
         }

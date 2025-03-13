@@ -1,4 +1,4 @@
-namespace AgileSoftwareDevelopment.Bowling;
+namespace AgilePrinciples.Bowling;
 
 public class Game {
     public int Score => ScoreForFrame(currentFrame);

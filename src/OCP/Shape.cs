@@ -1,4 +1,4 @@
-namespace AgileSoftwareDevelopment.OCP.Shape;
+namespace AgilePrinciples.OCP.Shape;
 
 public interface Shape {
     void Draw();

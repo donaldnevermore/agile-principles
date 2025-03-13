@@ -1,4 +1,4 @@
-namespace AgileSoftwareDevelopment.LSP {
+namespace AgilePrinciples.LSP {
     public struct Point {
         double x;
         double y;

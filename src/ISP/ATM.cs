@@ -1,4 +1,4 @@
-namespace AgileSoftwareDevelopment.ISP;
+namespace AgilePrinciples.ISP;
 
 public interface Transaction {
     void Execute();

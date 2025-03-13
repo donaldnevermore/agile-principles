@@ -1,7 +1,7 @@
 ﻿using System;
-using AgileSoftwareDevelopment.Payroll.Domain;
+using AgilePrinciples.Payroll.Domain;
 
-namespace AgileSoftwareDevelopment.Payroll.Affiliations {
+namespace AgilePrinciples.Payroll.Affiliations {
     public class ServiceChargeTransaction : Transaction {
         private readonly int memberId;
         private readonly DateTime time;

@@ -1,4 +1,4 @@
-﻿namespace AgileSoftwareDevelopment.Visitor;
+﻿namespace AgilePrinciples.Visitor;
 
 public interface Modem {
     void Dial(string pno);

@@ -1,4 +1,4 @@
-namespace AgileSoftwareDevelopment.CommandAndActiveObject;
+namespace AgilePrinciples.CommandAndActiveObject;
 
 public class DelayedTyper : Command {
     private readonly long itsDelay;

@@ -1,4 +1,4 @@
-namespace AgileSoftwareDevelopment.OCP.ShapeComparer;
+namespace AgilePrinciples.OCP.ShapeComparer;
 
 public interface Shape {
     void Draw();

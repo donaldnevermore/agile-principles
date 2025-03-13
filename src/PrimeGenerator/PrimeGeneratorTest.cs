@@ -1,6 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace AgileSoftwareDevelopment.PrimeGenerator;
+namespace AgilePrinciples.PrimeGenerator;
 
 [TestClass]
 public class PrimeGeneratorTest {

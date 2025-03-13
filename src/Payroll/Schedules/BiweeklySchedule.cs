@@ -1,7 +1,7 @@
 ﻿using System;
-using AgileSoftwareDevelopment.Payroll.Domain;
+using AgilePrinciples.Payroll.Domain;
 
-namespace AgileSoftwareDevelopment.Payroll.Schedules {
+namespace AgilePrinciples.Payroll.Schedules {
     public class BiweeklySchedule : PayrollSchedule {
         private DateTime? previousPayDate = null;
 

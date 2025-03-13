@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AgileSoftwareDevelopment.Payroll.Affiliations {
+namespace AgilePrinciples.Payroll.Affiliations {
     public class ServiceCharge {
         public DateTime Date { get; }
         public double Amount { get; }

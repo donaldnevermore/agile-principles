@@ -1,4 +1,4 @@
-namespace AgileSoftwareDevelopment.SingletonAndMonostate;
+namespace AgilePrinciples.SingletonAndMonostate;
 
 public sealed class Singleton {
     public static readonly Singleton Instance = new Singleton();

@@ -1,6 +1,6 @@
-﻿using AgileSoftwareDevelopment.Payroll.Domain;
+﻿using AgilePrinciples.Payroll.Domain;
 
-namespace AgileSoftwareDevelopment.Payroll.Methods {
+namespace AgilePrinciples.Payroll.Methods {
     public class DirectMethod : PayrollMethod {
         public string Bank { get; }
         public string Account { get; }

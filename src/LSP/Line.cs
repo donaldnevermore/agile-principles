@@ -1,4 +1,4 @@
-namespace AgileSoftwareDevelopment.LSP {
+namespace AgilePrinciples.LSP {
     public abstract class LinearObject {
         private Point p1;
         private Point p2;

@@ -1,6 +1,6 @@
 using System.Collections;
 
-namespace AgileSoftwareDevelopment.UML;
+namespace AgilePrinciples.UML;
 
 public interface Logger {
     void LogMessage(string msg);

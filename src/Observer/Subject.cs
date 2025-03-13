@@ -1,4 +1,4 @@
-﻿namespace AgileSoftwareDevelopment.Observer;
+﻿namespace AgilePrinciples.Observer;
 
 public class Subject {
     private readonly IList<Observer> itsObservers = new List<Observer>();

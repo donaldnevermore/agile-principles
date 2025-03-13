@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AgileSoftwareDevelopment.Payroll {
+namespace AgilePrinciples.Payroll {
     public class Paycheck {
         public double GrossPay { get; set; }
         public double Deductions { get; set; }

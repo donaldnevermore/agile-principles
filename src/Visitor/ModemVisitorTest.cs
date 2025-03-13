@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace AgileSoftwareDevelopment.Visitor;
+namespace AgilePrinciples.Visitor;
 
 [TestClass]
 public class ModemVisitorTest {

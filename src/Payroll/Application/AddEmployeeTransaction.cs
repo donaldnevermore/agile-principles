@@ -1,8 +1,8 @@
-﻿using AgileSoftwareDevelopment.Payroll.Affiliations;
-using AgileSoftwareDevelopment.Payroll.Domain;
-using AgileSoftwareDevelopment.Payroll.Methods;
+﻿using AgilePrinciples.Payroll.Affiliations;
+using AgilePrinciples.Payroll.Domain;
+using AgilePrinciples.Payroll.Methods;
 
-namespace AgileSoftwareDevelopment.Payroll.Application {
+namespace AgilePrinciples.Payroll.Application {
     public abstract class AddEmployeeTransaction : Transaction {
         private readonly int empId;
         private readonly string name;

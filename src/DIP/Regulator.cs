@@ -1,4 +1,4 @@
-namespace AgileSoftwareDevelopment.DIP;
+namespace AgilePrinciples.DIP;
 
 public class Regulator {
     public void Regulate(Thermometer t, Heater h, double minTemp, double maxTemp) {

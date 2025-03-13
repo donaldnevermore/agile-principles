@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AgileSoftwareDevelopment.Payroll.Domain {
+namespace AgilePrinciples.Payroll.Domain {
     public class Employee {
         public string Name { get; set; }
         public string Address { get; set; }

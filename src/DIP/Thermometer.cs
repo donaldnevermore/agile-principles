@@ -1,4 +1,4 @@
-﻿namespace AgileSoftwareDevelopment.DIP;
+﻿namespace AgilePrinciples.DIP;
 
 public interface Thermometer {
     double Read();

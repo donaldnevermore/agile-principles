@@ -1,4 +1,4 @@
-﻿namespace AgileSoftwareDevelopment.Observer {
+﻿namespace AgilePrinciples.Observer {
     public class MockTimeSink : Observer {
         public int Hours { get; private set; }
         public int Minutes { get; private set; }

@@ -1,6 +1,6 @@
-﻿using AgileSoftwareDevelopment.Payroll.Domain;
+﻿using AgilePrinciples.Payroll.Domain;
 
-namespace AgileSoftwareDevelopment.Payroll.Methods {
+namespace AgilePrinciples.Payroll.Methods {
     public class HoldMethod : PayrollMethod {
         public void Pay(Paycheck paycheck) {
             // TODO:

@@ -1,8 +1,8 @@
-﻿using AgileSoftwareDevelopment.Payroll.Domain;
-using AgileSoftwareDevelopment.Payroll.Classifications;
-using AgileSoftwareDevelopment.Payroll.Schedules;
+﻿using AgilePrinciples.Payroll.Classifications;
+using AgilePrinciples.Payroll.Domain;
+using AgilePrinciples.Payroll.Schedules;
 
-namespace AgileSoftwareDevelopment.Payroll.Application {
+namespace AgilePrinciples.Payroll.Application {
     public class AddCommissionedEmployee : AddEmployeeTransaction {
         private readonly double salary;
         private readonly double commissionRate;

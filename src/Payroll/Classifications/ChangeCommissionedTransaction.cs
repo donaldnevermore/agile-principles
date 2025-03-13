@@ -1,7 +1,7 @@
-﻿using AgileSoftwareDevelopment.Payroll.Domain;
-using AgileSoftwareDevelopment.Payroll.Schedules;
+﻿using AgilePrinciples.Payroll.Domain;
+using AgilePrinciples.Payroll.Schedules;
 
-namespace AgileSoftwareDevelopment.Payroll.Classifications {
+namespace AgilePrinciples.Payroll.Classifications {
     public class ChangeCommissionedTransaction : ChangeClassificationTransaction {
         private readonly double salary;
         private readonly double commissionRate;

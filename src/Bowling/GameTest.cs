@@ -1,6 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace AgileSoftwareDevelopment.Bowling;
+namespace AgilePrinciples.Bowling;
 
 [TestClass]
 public class GameTest {

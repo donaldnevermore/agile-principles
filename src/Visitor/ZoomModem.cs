@@ -1,4 +1,4 @@
-﻿namespace AgileSoftwareDevelopment.Visitor;
+﻿namespace AgilePrinciples.Visitor;
 
 public class ZoomModem : Modem {
     public void Dial(string pno) {

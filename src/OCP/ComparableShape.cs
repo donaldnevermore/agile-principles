@@ -1,4 +1,4 @@
-namespace AgileSoftwareDevelopment.OCP.ComparableShape;
+namespace AgilePrinciples.OCP.ComparableShape;
 
 public interface Shape : IComparable<Shape> {
     void Draw();

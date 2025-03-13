@@ -1,6 +1,6 @@
-﻿using AgileSoftwareDevelopment.Payroll.Domain;
+﻿using AgilePrinciples.Payroll.Domain;
 
-namespace AgileSoftwareDevelopment.Payroll;
+namespace AgilePrinciples.Payroll;
 
 public class PayrollDatabase {
     private static readonly Dictionary<int, Employee> employees = new();

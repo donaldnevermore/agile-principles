@@ -1,4 +1,4 @@
-namespace AgileSoftwareDevelopment.Composite;
+namespace AgilePrinciples.Composite;
 
 public class CompositeShape : Shape {
     private readonly List<Shape> itsShapes = new();

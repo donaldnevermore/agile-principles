@@ -1,6 +1,6 @@
-﻿using AgileSoftwareDevelopment.Payroll.Domain;
+﻿using AgilePrinciples.Payroll.Domain;
 
-namespace AgileSoftwareDevelopment.Payroll.Application;
+namespace AgilePrinciples.Payroll.Application;
 
 public class PaydayTransaction : Transaction {
     private readonly DateTime payDate;

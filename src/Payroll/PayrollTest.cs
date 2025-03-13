@@ -1,11 +1,11 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using AgileSoftwareDevelopment.Payroll.Affiliations;
-using AgileSoftwareDevelopment.Payroll.Application;
-using AgileSoftwareDevelopment.Payroll.Classifications;
-using AgileSoftwareDevelopment.Payroll.Methods;
-using AgileSoftwareDevelopment.Payroll.Schedules;
+﻿using AgilePrinciples.Payroll.Affiliations;
+using AgilePrinciples.Payroll.Application;
+using AgilePrinciples.Payroll.Classifications;
+using AgilePrinciples.Payroll.Methods;
+using AgilePrinciples.Payroll.Schedules;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace AgileSoftwareDevelopment.Payroll;
+namespace AgilePrinciples.Payroll;
 
 [TestClass]
 public class PayrollTest {

@@ -1,7 +1,7 @@
 ﻿using System;
-using AgileSoftwareDevelopment.Payroll.Domain;
+using AgilePrinciples.Payroll.Domain;
 
-namespace AgileSoftwareDevelopment.Payroll {
+namespace AgilePrinciples.Payroll {
     public abstract class ChangeEmployeeTransaction : Transaction {
         private readonly int empId;
 

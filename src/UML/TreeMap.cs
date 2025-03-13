@@ -1,4 +1,4 @@
-namespace AgileSoftwareDevelopment.UML;
+namespace AgilePrinciples.UML;
 
 public class TreeMap {
     private TreeMapNode topNode = null;

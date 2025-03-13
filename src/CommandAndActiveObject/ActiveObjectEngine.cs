@@ -1,4 +1,4 @@
-namespace AgileSoftwareDevelopment.CommandAndActiveObject;
+namespace AgilePrinciples.CommandAndActiveObject;
 
 public class ActiveObjectEngine {
     private readonly List<Command> itsCommands = new();

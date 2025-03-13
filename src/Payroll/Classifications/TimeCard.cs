@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AgileSoftwareDevelopment.Payroll.Classifications {
+namespace AgilePrinciples.Payroll.Classifications {
     public class TimeCard {
         public double Hours { get; }
         public DateTime Date { get; }

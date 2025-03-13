@@ -1,6 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace AgileSoftwareDevelopment.CoffeeMaker.M4CoffeeMaker;
+namespace AgilePrinciples.CoffeeMaker.M4CoffeeMaker;
 
 [TestClass]
 public class M4CoffeeMakerTest {

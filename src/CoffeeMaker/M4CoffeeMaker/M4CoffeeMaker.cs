@@ -1,4 +1,4 @@
-namespace AgileSoftwareDevelopment.CoffeeMaker.M4CoffeeMaker;
+namespace AgilePrinciples.CoffeeMaker.M4CoffeeMaker;
 
 public class M4CoffeeMaker {
     public static void Start() {

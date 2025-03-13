@@ -1,4 +1,4 @@
-﻿namespace AgileSoftwareDevelopment.Visitor;
+﻿namespace AgilePrinciples.Visitor;
 
 public class UnixModemConfigurator : ModemVisitor {
     public void Visit(HayesModem m) {
