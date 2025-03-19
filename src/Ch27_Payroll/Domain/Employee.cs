@@ -1,83 +1,83 @@
 ﻿using System.Text;
 using AgilePrinciples.Payroll.Affiliations;
 
-namespace AgilePrinciples.Payroll.Domain {
-    public class Employee {
-        private readonly int empid;
-        private string name;
-        private string address;
-        private PaymentClassification classification;
-        private PaymentSchedule schedule;
-        private PaymentMethod method;
-        private Affiliation affiliation = new NoAffiliation();
+namespace AgilePrinciples.Payroll.Domain;
 
-        public Employee(int empid, string name, string address) {
-            this.empid = empid;
-            this.name = name;
-            this.address = address;
-        }
+public class Employee {
+    private readonly int empid;
+    private string name;
+    private string address;
+    private PaymentClassification classification;
+    private PaymentSchedule schedule;
+    private PaymentMethod method;
+    private Affiliation affiliation = new NoAffiliation();
 
-        public string Name {
-            get { return name; }
-            set { name = value; }
-        }
+    public Employee(int empid, string name, string address) {
+        this.empid = empid;
+        this.name = name;
+        this.address = address;
+    }
 
-        public string Address {
-            get { return address; }
-            set { address = value; }
-        }
+    public string Name {
+        get { return name; }
+        set { name = value; }
+    }
 
-        public PaymentClassification Classification {
-            get { return classification; }
-            set { classification = value; }
-        }
+    public string Address {
+        get { return address; }
+        set { address = value; }
+    }
 
-        public PaymentSchedule Schedule {
-            get { return schedule; }
-            set { schedule = value; }
-        }
+    public PaymentClassification Classification {
+        get { return classification; }
+        set { classification = value; }
+    }
 
-        public PaymentMethod Method {
-            get { return method; }
-            set { method = value; }
-        }
+    public PaymentSchedule Schedule {
+        get { return schedule; }
+        set { schedule = value; }
+    }
 
-        public Affiliation Affiliation {
-            get { return affiliation; }
-            set { affiliation = value; }
-        }
+    public PaymentMethod Method {
+        get { return method; }
+        set { method = value; }
+    }
 
-        public bool IsPayDate(DateTime date) {
-            return schedule.IsPayDate(date);
-        }
+    public Affiliation Affiliation {
+        get { return affiliation; }
+        set { affiliation = value; }
+    }
 
-        public void Payday(Paycheck paycheck) {
-            double grossPay = classification.CalculatePay(paycheck);
-            double deductions = affiliation.CalculateDeductions(paycheck);
-            double netPay = grossPay - deductions;
-            paycheck.GrossPay = grossPay;
-            paycheck.Deductions = deductions;
-            paycheck.NetPay = netPay;
-            method.Pay(paycheck);
-        }
+    public bool IsPayDate(DateTime date) {
+        return schedule.IsPayDate(date);
+    }
 
-        public DateTime GetPayPeriodStartDate(DateTime date) {
-            return schedule.GetPayPeriodStartDate(date);
-        }
+    public void Payday(Paycheck paycheck) {
+        double grossPay = classification.CalculatePay(paycheck);
+        double deductions = affiliation.CalculateDeductions(paycheck);
+        double netPay = grossPay - deductions;
+        paycheck.GrossPay = grossPay;
+        paycheck.Deductions = deductions;
+        paycheck.NetPay = netPay;
+        method.Pay(paycheck);
+    }
 
-        public int EmpId {
-            get { return empid; }
-        }
+    public DateTime GetPayPeriodStartDate(DateTime date) {
+        return schedule.GetPayPeriodStartDate(date);
+    }
 
-        public override string ToString() {
-            StringBuilder builder = new StringBuilder();
-            builder.Append("Emp#: ").Append(empid).Append("   ");
-            builder.Append(name).Append("   ");
-            builder.Append(address).Append("   ");
-            builder.Append("Paid ").Append(classification).Append(" ");
-            builder.Append(schedule);
-            builder.Append(" by ").Append(method);
-            return builder.ToString();
-        }
+    public int EmpId {
+        get { return empid; }
+    }
+
+    public override string ToString() {
+        StringBuilder builder = new StringBuilder();
+        builder.Append("Emp#: ").Append(empid).Append("   ");
+        builder.Append(name).Append("   ");
+        builder.Append(address).Append("   ");
+        builder.Append("Paid ").Append(classification).Append(" ");
+        builder.Append(schedule);
+        builder.Append(" by ").Append(method);
+        return builder.ToString();
     }
 }

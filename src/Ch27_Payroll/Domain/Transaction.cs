@@ -1,13 +1,11 @@
-﻿namespace AgilePrinciples.Payroll.Domain {
-    public abstract class Transaction
-    {
-        protected readonly PayrollDatabase database;
+﻿namespace AgilePrinciples.Payroll.Domain;
 
-        public Transaction(PayrollDatabase database)
-        {
-            this.database = database;
-        }
+public abstract class Transaction {
+    protected readonly PayrollDatabase database;
 
-        public abstract void Execute();
+    public Transaction(PayrollDatabase database) {
+        this.database = database;
     }
+
+    public abstract void Execute();
 }

@@ -1,19 +1,16 @@
-﻿using AgilePrinciples.Payroll.Affiliations;
-using AgilePrinciples.Payroll.Domain;
+﻿using AgilePrinciples.Payroll.Domain;
 using AgilePrinciples.Payroll.Methods;
 
 namespace AgilePrinciples.Payroll.Application;
 
-public abstract class AddEmployeeTransaction : Transaction
-{
+public abstract class AddEmployeeTransaction : Transaction {
     private readonly int empid;
     private readonly string name;
     private readonly string address;
 
     public AddEmployeeTransaction(int empid,
         string name, string address, PayrollDatabase database)
-        : base (database)
-    {
+        : base(database) {
         this.empid = empid;
         this.name = name;
         this.address = address;
@@ -21,11 +18,11 @@ public abstract class AddEmployeeTransaction : Transaction
 
     protected abstract
         PaymentClassification MakeClassification();
+
     protected abstract
         PaymentSchedule MakeSchedule();
 
-    public override void Execute()
-    {
+    public override void Execute() {
         PaymentClassification pc = MakeClassification();
         PaymentSchedule ps = MakeSchedule();
         PaymentMethod pm = new HoldMethod();
@@ -37,8 +34,7 @@ public abstract class AddEmployeeTransaction : Transaction
         database.AddEmployee(e);
     }
 
-    public override string ToString()
-    {
-        return String.Format("{0}  id:{1}   name:{2}   address:{3}", GetType().Name, empid, name,address);
+    public override string ToString() {
+        return String.Format("{0}  id:{1}   name:{2}   address:{3}", GetType().Name, empid, name, address);
     }
 }

@@ -14,8 +14,8 @@ public class UnionAffiliation : Affiliation {
     }
 
     public UnionAffiliation()
-        : this(-1, 0.0)
-    {}
+        : this(-1, 0.0) {
+    }
 
     public ServiceCharge GetServiceCharge(DateTime date) {
         return charges[date];

@@ -1,9 +1,6 @@
-﻿using System;
+﻿namespace AgilePrinciples.Payroll.Domain;
 
-namespace AgilePrinciples.Payroll.Domain {
-    public interface PaymentSchedule
-    {
-        bool IsPayDate(DateTime payDate);
-        DateTime GetPayPeriodStartDate(DateTime date);
-    }
+public interface PaymentSchedule {
+    bool IsPayDate(DateTime payDate);
+    DateTime GetPayPeriodStartDate(DateTime date);
 }

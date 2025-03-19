@@ -7,8 +7,7 @@ public class PaydayTransaction : Transaction {
     private readonly Dictionary<int, Paycheck> paychecks = new();
 
     public PaydayTransaction(DateTime payDate, PayrollDatabase database)
-        : base (database)
-    {
+        : base(database) {
         this.payDate = payDate;
     }
 

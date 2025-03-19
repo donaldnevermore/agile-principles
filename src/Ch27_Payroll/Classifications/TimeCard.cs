@@ -1,13 +1,11 @@
-﻿using System;
+﻿namespace AgilePrinciples.Payroll.Classifications;
 
-namespace AgilePrinciples.Payroll.Classifications {
-    public class TimeCard {
-        public double Hours { get; }
-        public DateTime Date { get; }
+public class TimeCard {
+    public double Hours { get; }
+    public DateTime Date { get; }
 
-        public TimeCard(DateTime date, double hours) {
-            Date = date;
-            Hours = hours;
-        }
+    public TimeCard(DateTime date, double hours) {
+        Date = date;
+        Hours = hours;
     }
 }

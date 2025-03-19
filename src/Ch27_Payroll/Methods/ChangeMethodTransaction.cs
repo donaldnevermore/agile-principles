@@ -1,18 +1,16 @@
 ﻿using AgilePrinciples.Payroll.Domain;
 
-namespace AgilePrinciples.Payroll.Methods {
-    public abstract class ChangeMethodTransaction : ChangeEmployeeTransaction
-    {
-        public ChangeMethodTransaction(int empId, PayrollDatabase database)
-            : base(empId, database)
-        {}
+namespace AgilePrinciples.Payroll.Methods;
 
-        protected override void Change(Employee e)
-        {
-            PaymentMethod method = Method;
-            e.Method = method;
-        }
-
-        protected abstract PaymentMethod Method { get; }
+public abstract class ChangeMethodTransaction : ChangeEmployeeTransaction {
+    public ChangeMethodTransaction(int empId, PayrollDatabase database)
+        : base(empId, database) {
     }
+
+    protected override void Change(Employee e) {
+        PaymentMethod method = Method;
+        e.Method = method;
+    }
+
+    protected abstract PaymentMethod Method { get; }
 }

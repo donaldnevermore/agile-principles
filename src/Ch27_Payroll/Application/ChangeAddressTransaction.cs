@@ -5,7 +5,7 @@ namespace AgilePrinciples.Payroll.Application;
 public class ChangeAddressTransaction : ChangeEmployeeTransaction {
     private readonly string newAddress;
 
-    public ChangeAddressTransaction(int id, string newAddress, PayrollDatabase database) : base(id,database) {
+    public ChangeAddressTransaction(int id, string newAddress, PayrollDatabase database) : base(id, database) {
         this.newAddress = newAddress;
     }
 

@@ -1,17 +1,17 @@
 ﻿using AgilePrinciples.Payroll.Domain;
 
-namespace AgilePrinciples.Payroll.Schedules {
-    public class WeeklySchedule : PaymentSchedule {
-        public bool IsPayDate(DateTime payDate) {
-            return payDate.DayOfWeek == DayOfWeek.Friday;
-        }
+namespace AgilePrinciples.Payroll.Schedules;
 
-        public DateTime GetPayPeriodStartDate(DateTime date) {
-            return date.AddDays(-6);
-        }
+public class WeeklySchedule : PaymentSchedule {
+    public bool IsPayDate(DateTime payDate) {
+        return payDate.DayOfWeek == DayOfWeek.Friday;
+    }
 
-        public override string ToString() {
-            return "weekly";
-        }
+    public DateTime GetPayPeriodStartDate(DateTime date) {
+        return date.AddDays(-6);
+    }
+
+    public override string ToString() {
+        return "weekly";
     }
 }

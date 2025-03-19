@@ -1,25 +1,19 @@
-﻿using System;
+﻿namespace AgilePrinciples.Payroll.Classifications;
 
-namespace AgilePrinciples.Payroll.Classifications {
-    public class SalesReceipt
-    {
-        private readonly DateTime date;
-        private readonly double saleAmount;
+public class SalesReceipt {
+    private readonly DateTime date;
+    private readonly double saleAmount;
 
-        public SalesReceipt(DateTime date, double amount)
-        {
-            this.date = date;
-            this.saleAmount = amount;
-        }
+    public SalesReceipt(DateTime date, double amount) {
+        this.date = date;
+        this.saleAmount = amount;
+    }
 
-        public DateTime Date
-        {
-            get { return date; }
-        }
+    public DateTime Date {
+        get { return date; }
+    }
 
-        public double SaleAmount
-        {
-            get { return saleAmount; }
-        }
+    public double SaleAmount {
+        get { return saleAmount; }
     }
 }

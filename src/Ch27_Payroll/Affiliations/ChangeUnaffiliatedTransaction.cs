@@ -1,19 +1,19 @@
 ﻿using AgilePrinciples.Payroll.Domain;
 
-namespace AgilePrinciples.Payroll.Affiliations {
-    public class ChangeUnaffiliatedTransaction : ChangeAffiliationTransaction {
-        public ChangeUnaffiliatedTransaction(int empId, PayrollDatabase database)
-            : base(empId, database)
-        {}
+namespace AgilePrinciples.Payroll.Affiliations;
 
-        protected override Affiliation Affiliation => new NoAffiliation();
+public class ChangeUnaffiliatedTransaction : ChangeAffiliationTransaction {
+    public ChangeUnaffiliatedTransaction(int empId, PayrollDatabase database)
+        : base(empId, database) {
+    }
 
-        protected override void RecordMembership(Employee e) {
-            var affiliation = e.Affiliation;
-            if (affiliation is UnionAffiliation unionAffiliation) {
-                var memberId = unionAffiliation.MemberId;
-                database.RemoveUnionMember(memberId);
-            }
+    protected override Affiliation Affiliation => new NoAffiliation();
+
+    protected override void RecordMembership(Employee e) {
+        var affiliation = e.Affiliation;
+        if (affiliation is UnionAffiliation unionAffiliation) {
+            var memberId = unionAffiliation.MemberId;
+            database.RemoveUnionMember(memberId);
         }
     }
 }

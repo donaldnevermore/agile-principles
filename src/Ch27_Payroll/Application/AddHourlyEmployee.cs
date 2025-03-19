@@ -4,25 +4,20 @@ using AgilePrinciples.Payroll.Schedules;
 
 namespace AgilePrinciples.Payroll.Application;
 
-public class AddHourlyEmployee : AddEmployeeTransaction
-{
+public class AddHourlyEmployee : AddEmployeeTransaction {
     private readonly double hourlyRate;
 
     public AddHourlyEmployee(int id, string name, string address, double hourlyRate, PayrollDatabase database)
-        : base(id, name, address, database)
-    {
+        : base(id, name, address, database) {
         this.hourlyRate = hourlyRate;
-
     }
 
     protected override
-        PaymentClassification MakeClassification()
-    {
+        PaymentClassification MakeClassification() {
         return new HourlyClassification(hourlyRate);
     }
 
-    protected override PaymentSchedule MakeSchedule()
-    {
+    protected override PaymentSchedule MakeSchedule() {
         return new WeeklySchedule();
     }
 }

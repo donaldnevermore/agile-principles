@@ -1,29 +1,29 @@
 ﻿using AgilePrinciples.Payroll.Domain;
 
-namespace AgilePrinciples.Payroll.Methods {
-    public class DirectDepositMethod : PaymentMethod {
-        private readonly string bank;
-        private readonly string accountNumber;
+namespace AgilePrinciples.Payroll.Methods;
 
-        public DirectDepositMethod(string bank, string accountNumber) {
-            this.bank = bank;
-            this.accountNumber = accountNumber;
-        }
+public class DirectDepositMethod : PaymentMethod {
+    private readonly string bank;
+    private readonly string accountNumber;
 
-        public void Pay(Paycheck paycheck) {
-            paycheck.SetField("Disposition", "Direct");
-        }
+    public DirectDepositMethod(string bank, string accountNumber) {
+        this.bank = bank;
+        this.accountNumber = accountNumber;
+    }
 
-        public string Bank {
-            get { return bank; }
-        }
+    public void Pay(Paycheck paycheck) {
+        paycheck.SetField("Disposition", "Direct");
+    }
 
-        public string AccountNumber {
-            get { return accountNumber; }
-        }
+    public string Bank {
+        get { return bank; }
+    }
 
-        public override string ToString() {
-            return String.Format("direct deposit into {0}:{1}", bank, accountNumber);
-        }
+    public string AccountNumber {
+        get { return accountNumber; }
+    }
+
+    public override string ToString() {
+        return String.Format("direct deposit into {0}:{1}", bank, accountNumber);
     }
 }

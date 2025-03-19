@@ -1,28 +1,23 @@
 ﻿using AgilePrinciples.Payroll.Domain;
 
-namespace AgilePrinciples.Payroll.Classifications {
-    public class SalariedClassification : PaymentClassification
-    {
-        private readonly double salary;
+namespace AgilePrinciples.Payroll.Classifications;
 
-        public SalariedClassification(double salary)
-        {
-            this.salary = salary;
-        }
+public class SalariedClassification : PaymentClassification {
+    private readonly double salary;
 
-        public double Salary
-        {
-            get { return salary; }
-        }
+    public SalariedClassification(double salary) {
+        this.salary = salary;
+    }
 
-        public override double CalculatePay(Paycheck paycheck)
-        {
-            return salary;
-        }
+    public double Salary {
+        get { return salary; }
+    }
 
-        public override string ToString()
-        {
-            return String.Format("${0}", salary);
-        }
+    public override double CalculatePay(Paycheck paycheck) {
+        return salary;
+    }
+
+    public override string ToString() {
+        return String.Format("${0}", salary);
     }
 }

@@ -1,26 +1,22 @@
 ﻿using AgilePrinciples.Payroll.Domain;
 
-namespace AgilePrinciples.Payroll.Affiliations {
-    public class ChangeMemberTransaction : ChangeAffiliationTransaction
-    {
-        private readonly int memberId;
-        private readonly double dues;
+namespace AgilePrinciples.Payroll.Affiliations;
 
-        public ChangeMemberTransaction(int empId, int memberId, double dues, PayrollDatabase database)
-            : base(empId, database)
-        {
-            this.memberId = memberId;
-            this.dues = dues;
-        }
+public class ChangeMemberTransaction : ChangeAffiliationTransaction {
+    private readonly int memberId;
+    private readonly double dues;
 
-        protected override Affiliation Affiliation
-        {
-            get { return new UnionAffiliation(memberId, dues); }
-        }
+    public ChangeMemberTransaction(int empId, int memberId, double dues, PayrollDatabase database)
+        : base(empId, database) {
+        this.memberId = memberId;
+        this.dues = dues;
+    }
 
-        protected override void RecordMembership(Employee e)
-        {
-            database.AddUnionMember(memberId, e);
-        }
+    protected override Affiliation Affiliation {
+        get { return new UnionAffiliation(memberId, dues); }
+    }
+
+    protected override void RecordMembership(Employee e) {
+        database.AddUnionMember(memberId, e);
     }
 }

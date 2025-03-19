@@ -3,18 +3,15 @@
 namespace AgilePrinciples.Payroll.Application;
 
 public class ChangeNameTransaction
-    : ChangeEmployeeTransaction
-{
+    : ChangeEmployeeTransaction {
     private readonly string newName;
 
     public ChangeNameTransaction(int id, string newName, PayrollDatabase database)
-        : base(id, database)
-    {
+        : base(id, database) {
         this.newName = newName;
     }
 
-    protected override void Change(Employee e)
-    {
+    protected override void Change(Employee e) {
         e.Name = newName;
     }
 }

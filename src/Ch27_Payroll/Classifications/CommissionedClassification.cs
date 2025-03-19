@@ -21,21 +21,19 @@ public class CommissionedClassification : PaymentClassification {
         return salesReceipts[date];
     }
 
-    public override double CalculatePay(Paycheck paycheck)
-    {
+    public override double CalculatePay(Paycheck paycheck) {
         double salesTotal = 0;
-        foreach(SalesReceipt receipt in salesReceipts.Values)
-        {
-            if(DateUtil.IsInPayPeriod(receipt.Date,
-                   paycheck.PayPeriodStartDate,
-                   paycheck.PayPeriodEndDate))
+        foreach (SalesReceipt receipt in salesReceipts.Values) {
+            if (DateUtil.IsInPayPeriod(receipt.Date,
+                    paycheck.PayPeriodStartDate,
+                    paycheck.PayPeriodEndDate))
                 salesTotal += receipt.SaleAmount;
         }
+
         return BaseRate + (salesTotal * CommissionRate * 0.01);
     }
 
-    public override string ToString()
-    {
+    public override string ToString() {
         return String.Format("${0} + {1}% sales commission", BaseRate, CommissionRate);
     }
 }
