@@ -16,17 +16,15 @@ public class SalesReceiptTransaction : Transaction {
 
     public override void Execute() {
         var e = database.GetEmployee(empId);
-
         if (e is null) {
             throw new ApplicationException(
                 "No such employee.");
         }
 
-
         if (e.Classification is CommissionedClassification hc) {
             hc.AddSalesReceipt(new SalesReceipt(date, saleAmount));
         } else {
-            throw new InvalidOperationException("Tried to add sales receipt to non-commissioned employee");
+            throw new ApplicationException("Tried to add sales receipt to non-commissioned employee");
         }
     }
 }

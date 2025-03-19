@@ -16,16 +16,14 @@ public class TimeCardTransaction : Transaction {
 
     public override void Execute() {
         var e = database.GetEmployee(empId);
-
         if (e is null) {
-            throw new InvalidOperationException("No such employee");
+            throw new ApplicationException("No such employee");
         }
-
 
         if (e.Classification is HourlyClassification hc) {
             hc.AddTimeCard(new TimeCard(date, hours));
         } else {
-            throw new InvalidOperationException("Tried to add time card to non-hourly employee");
+            throw new ApplicationException("Tried to add time card to non-hourly employee");
         }
     }
 }

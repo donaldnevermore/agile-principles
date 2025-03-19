@@ -30,7 +30,7 @@ public class PayrollTest {
         Assert.IsTrue(pc is SalariedClassification);
 
         var sc = pc as SalariedClassification;
-        Assert.AreEqual(1000.00, sc.Salary, 0.001);
+        Assert.AreEqual(1000.00, sc!.Salary, 0.001);
         var ps = e.Schedule;
         Assert.IsTrue(ps is MonthlySchedule);
 
@@ -51,7 +51,7 @@ public class PayrollTest {
         Assert.IsTrue(pc is HourlyClassification);
 
         var hc = pc as HourlyClassification;
-        Assert.AreEqual(0.5, hc.HourlyRate, 0.001);
+        Assert.AreEqual(0.5, hc!.HourlyRate, 0.001);
         var ps = e.Schedule;
         Assert.IsTrue(ps is WeeklySchedule);
 
@@ -72,7 +72,7 @@ public class PayrollTest {
         Assert.IsTrue(pc is CommissionedClassification);
 
         var cc = pc as CommissionedClassification;
-        Assert.AreEqual(2500.00, cc.BaseRate, 0.001);
+        Assert.AreEqual(2500.00, cc!.BaseRate, 0.001);
         Assert.AreEqual(3.2, cc.CommissionRate, 0.001);
         var ps = e.Schedule;
         Assert.IsTrue(ps is BiweeklySchedule);
@@ -607,12 +607,12 @@ public class PayrollTest {
         ChangeUnaffiliatedTransaction cut =
             new ChangeUnaffiliatedTransaction(empId, database);
         cut.Execute();
-        Employee e = database.GetEmployee(empId);
+        Employee? e = database.GetEmployee(empId);
         Assert.IsNotNull(e);
         Affiliation affiliation = e.Affiliation;
         Assert.IsNotNull(affiliation);
         Assert.IsTrue(affiliation is NoAffiliation);
-        Employee member = database.GetUnionMember(memberId);
+        Employee? member = database.GetUnionMember(memberId);
         Assert.IsNull(member);
     }
 }

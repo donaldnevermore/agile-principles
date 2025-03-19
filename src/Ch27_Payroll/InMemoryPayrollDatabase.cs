@@ -10,12 +10,9 @@ public class InMemoryPayrollDatabase : PayrollDatabase {
         employees.Add(employee.EmpId, employee);
     }
 
-    public Employee GetEmployee(int id) {
-        if (employees.ContainsKey(id)) {
-            return employees[id];
-        }
-
-        return null;
+    public Employee? GetEmployee(int id) {
+        employees.TryGetValue(id, out Employee? value);
+        return value;
     }
 
     public void DeleteEmployee(int id) {
@@ -26,12 +23,9 @@ public class InMemoryPayrollDatabase : PayrollDatabase {
         unionMembers.Add(id, employee);
     }
 
-    public Employee GetUnionMember(int id) {
-        if (unionMembers.ContainsKey(id)) {
-            return unionMembers[id];
-        }
-
-        return null;
+    public Employee? GetUnionMember(int id) {
+        unionMembers.TryGetValue(id, out Employee? value);
+        return value;
     }
 
     public void RemoveUnionMember(int memberId) {

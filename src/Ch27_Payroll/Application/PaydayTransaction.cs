@@ -15,7 +15,7 @@ public class PaydayTransaction : Transaction {
         var empIds = database.GetAllEmployeeIds();
         foreach (int empId in empIds) {
             var employee = database.GetEmployee(empId);
-            if (employee.IsPayDate(payDate)) {
+            if (employee is not null && employee.IsPayDate(payDate)) {
                 var startDate = employee.GetPayPeriodStartDate(payDate);
                 var pc = new Paycheck(startDate, payDate);
 
@@ -25,11 +25,8 @@ public class PaydayTransaction : Transaction {
         }
     }
 
-    public Paycheck GetPaycheck(int empId) {
-        if (paychecks.ContainsKey(empId)) {
-            return paychecks[empId];
-        }
-
-        return null;
+    public Paycheck? GetPaycheck(int empId) {
+        paychecks.TryGetValue(empId, out Paycheck? value);
+        return value;
     }
 }

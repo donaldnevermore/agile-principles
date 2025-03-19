@@ -9,7 +9,7 @@ public abstract class ChangeEmployeeTransaction : Transaction {
     }
 
     public override void Execute() {
-        Employee e = database.GetEmployee(empId);
+        Employee? e = database.GetEmployee(empId);
         if (e is null) {
             throw new ApplicationException(
                 "No such employee.");
