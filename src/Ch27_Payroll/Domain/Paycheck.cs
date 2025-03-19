@@ -1,18 +1,16 @@
-﻿using System.Collections;
-
-namespace AgilePrinciples.Payroll;
+﻿namespace AgilePrinciples.Payroll.Domain;
 
 public class Paycheck {
     private DateTime payDate;
     private readonly DateTime payPeriodStartDate;
     private double grossPay;
-    private Hashtable fields = new Hashtable();
+    private readonly Dictionary<string, string> fields = new();
     private double deductions;
     private double netPay;
 
     public Paycheck(DateTime payPeriodStartDate, DateTime payDate) {
-        this.payDate = payDate;
         this.payPeriodStartDate = payPeriodStartDate;
+        this.payDate = payDate;
     }
 
     public DateTime PayDate {
@@ -29,7 +27,7 @@ public class Paycheck {
     }
 
     public string GetField(string fieldName) {
-        return fields[fieldName] as string;
+        return fields[fieldName];
     }
 
     public double Deductions {
