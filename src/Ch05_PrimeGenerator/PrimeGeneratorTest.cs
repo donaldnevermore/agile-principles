@@ -27,6 +27,7 @@ public class PrimeGeneratorTest {
     public void TestExhaustive() {
         for (var i = 2; i < 500; i++) {
             VerifyPrimeList(PrimeGenerator.GeneratePrimeNumbers(i));
+            VerifyPrimeList(GeneratePrimes.GeneratePrimeNumbers(i));
         }
     }
 
