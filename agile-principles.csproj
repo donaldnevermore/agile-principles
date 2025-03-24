@@ -10,5 +10,6 @@
     <ItemGroup>
         <PackageReference Include="MSTest" Version="3.8.2"/>
         <PackageReference Include="Microsoft.Testing.Extensions.CodeCoverage" Version="17.14.2"/>
+        <PackageReference Include="Microsoft.Data.SqlClient" Version="6.0.1" />
     </ItemGroup>
 </Project>
